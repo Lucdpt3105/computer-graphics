@@ -1,4 +1,4 @@
-﻿namespace Project_CG_Paint
+﻿namespace Project_CG_Paint.Forms.Paint
 {
     partial class PaintForm
     {

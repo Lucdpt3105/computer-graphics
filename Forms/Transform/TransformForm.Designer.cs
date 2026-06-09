@@ -1,4 +1,4 @@
-﻿namespace Project_CG_Paint.Forms
+﻿namespace Project_CG_Paint.Forms.Transform
 {
     partial class TransformForm
     {
