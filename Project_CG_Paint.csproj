@@ -48,27 +48,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AnimationForm.cs">
+    <Compile Include="Algorithms\Projection\CabinetProjection.cs" />
+    <Compile Include="Algorithms\Projection\CavalierProjection.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\BresenhamLine.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\DiamondRasterizer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\MidpointCircle.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\MidpointEllipse.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\ParallelogramRasterizer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\PolygonRasterizer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\RectangleRasterizer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\TriangleRasterizer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape3D\CubeWireFrame.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape3D\CylinderWireFrame.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape3D\PrismWireFrame.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape3D\PyramidWireFrame.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape3D\SphereWireFrame.cs" />
+    <Compile Include="Algorithms\Transform\TransformComposer2D.cs" />
+    <Compile Include="Algorithms\Transform\TransformComposer3D.cs" />
+    <Compile Include="Controllers\Drawing\DrawingController.cs" />
+    <Compile Include="CoreModel\Geometry\BoundingBox2D.cs" />
+    <Compile Include="CoreModel\Geometry\BoundingBox3D.cs" />
+    <Compile Include="CoreModel\Geometry\Edge.cs" />
+    <Compile Include="CoreModel\Model\Matrix3x3.cs" />
+    <Compile Include="CoreModel\Model\Matrix4x4.cs" />
+    <Compile Include="CoreModel\Model\MatrixFactory.cs" />
+    <Compile Include="CoreModel\Model\Point2D.cs" />
+    <Compile Include="CoreModel\Model\Point3D.cs" />
+    <Compile Include="Data\Objects\GraphicObject.cs" />
+    <Compile Include="Data\Scene\Scene.cs" />
+    <Compile Include="Forms\Animation\AnimationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AnimationForm.Designer.cs">
+    <Compile Include="Forms\Animation\AnimationForm.Designer.cs">
       <DependentUpon>AnimationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PaintForm.cs">
+    <Compile Include="Forms\Paint\PaintForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PaintForm.Designer.cs">
+    <Compile Include="Forms\Paint\PaintForm.Designer.cs">
       <DependentUpon>PaintForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TransformForm.cs">
+    <Compile Include="Forms\Transform\TransformForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TransformForm.Designer.cs">
+    <Compile Include="Forms\Transform\TransformForm.Designer.cs">
       <DependentUpon>TransformForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\PaintForm.resx">
+    <Compile Include="Rendering\RenderService.cs" />
+    <EmbeddedResource Include="Forms\Paint\PaintForm.resx">
       <DependentUpon>PaintForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -89,6 +118,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -107,6 +137,9 @@
     <Content Include="ICO\shape_size.ico" />
     <Content Include="ICO\sphere.ico" />
     <Content Include="ICO\triangle.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

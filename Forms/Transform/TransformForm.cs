@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Project_CG_Paint
+namespace Project_CG_Paint.Forms.Transform
 {
-    public partial class PaintForm : Form
+    public partial class TransformForm : Form
     {
-        public PaintForm()
+        public TransformForm()
         {
             InitializeComponent();
         }
