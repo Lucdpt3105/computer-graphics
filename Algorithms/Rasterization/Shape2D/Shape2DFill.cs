@@ -1,58 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
 {
     /// <summary>
-    /// Đại diện cho một điểm raster và màu được tô tại điểm đó.
-    /// </summary>
-    public sealed class ColoredPoint
-    {
-        public Point2D Point { get; }
-        public Color Color { get; }
-
-        public ColoredPoint(Point2D point, Color color)
-        {
-            Point = point;
-            Color = color;
-        }
-    }
-
-    /// <summary>
-    /// Hàm nhận điểm raster và trả về màu cần vẽ tại điểm đó.
-    /// Dùng để thay màu hard-code bằng màu động/gradient/texture sau này.
-    /// </summary>
-    public delegate Color FillColorFunction(Point2D point);
-
-    /// <summary>
-    /// Tập hợp các thuật toán fill màu riêng, độc lập với các shape.
+    /// Sinh danh sách điểm raster nằm trong hình. Lớp này chỉ xử lý dữ liệu hình học,
+    /// không xử lý màu, Brush hoặc Graphics.
     /// </summary>
     public static class Shape2DFill
     {
-        public static readonly FillColorFunction SolidFill = point => Color.Black;
-
-        public static List<ColoredPoint> ApplySolidColor(IEnumerable<Point2D> points, Color color)
-        {
-            if (points == null)
-                return new List<ColoredPoint>();
-
-            return points.Select(point => new ColoredPoint(point, color)).ToList();
-        }
-
-        public static List<ColoredPoint> ApplyColorFunction(IEnumerable<Point2D> points, FillColorFunction fillColorFunction)
-        {
-            if (points == null)
-                return new List<ColoredPoint>();
-
-            if (fillColorFunction == null)
-                throw new ArgumentNullException(nameof(fillColorFunction));
-
-            return points.Select(point => new ColoredPoint(point, fillColorFunction(point))).ToList();
-        }
-
         public static List<Point2D> FillRectangle(int xMin, int yMin, int xMax, int yMax)
         {
             List<Point2D> filledPoints = new List<Point2D>();
@@ -211,7 +169,7 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
             if (Math.Abs(y1 - y2) < 1e-10)
                 return;
 
-            if ((y >= Math.Min(y1, y2) && y <= Math.Max(y1, y2)))
+            if (y >= Math.Min(y1, y2) && y <= Math.Max(y1, y2))
             {
                 double x = p1.X + (y - y1) * (p2.X - p1.X) / (y2 - y1);
                 intersections.Add(x);
