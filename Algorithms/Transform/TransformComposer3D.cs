@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -87,178 +87,111 @@ namespace Project_CG_Paint.Algorithms.Transform
         }
 
         /// <summary>
-        /// Ma trận xoay (rotation) quanh trục X tại gốc tọa độ
+        /// Phép quay điểm P3 quanh trục bất kỳ P1P2 một góc ∂ (độ).
+        ///
+        /// Thuật toán 7 bước (dùng MatrixFactory):
+        ///   B1: T(-x1,-y1,-z1)              — tịnh tiến P1 về gốc O
+        ///   B2: RotX(∂1)                    — quay quanh X để P1P2 nằm trên mặt phẳng Oxz
+        ///   B3: RotY(∂2)                    — quay quanh Y để P1P2 trùng trục Ox
+        ///   B4: RotX(∂)                     — quay P3 quanh Ox góc ∂
+        ///   B5: RotY(-∂2)                   — đảo ngược B3
+        ///   B6: RotX(-∂1)                   — đảo ngược B2
+        ///   B7: T(x1,y1,z1)                 — đảo ngược B1
+        ///
+        /// Cách tính góc từ vector (dx, dy, dz):
+        ///   d1  = sqrt(dy²+dz²)
+        ///   ∂1  = atan2(dy, dz)   → đưa vector về mặt phẳng Oxz (triệt tiêu dy)
+        ///   ∂2  = atan2(d1, dx)   → đưa vector về trùng trục Ox  (triệt tiêu dz)
+        ///
+        /// Công thức: P = P3 · T1 · Rx(∂1) · Ry(∂2) · Rx(∂) · Ry(-∂2) · Rx(-∂1) · T7
         /// </summary>
-        public static Matrix4x4 BuildRotationByAxisXAtOrigin(double angleDegrees)
+        public static Matrix4x4 BuildRotationAroundArbitraryAxis(Point3D p1, Point3D p2, double angleDegrees)
         {
-            return MatrixFactory.CreateRotation3DX(angleDegrees);
+            double dx = p2.X - p1.X;
+            double dy = p2.Y - p1.Y;
+            double dz = p2.Z - p1.Z;
+
+            // d1: độ dài hình chiếu của vector lên mặt phẳng YZ
+            double d1 = Math.Sqrt(dy * dy + dz * dz);
+
+            // ∂1: góc quanh X để triệt tiêu thành phần Y → P1P2 nằm trên Oxz
+            double angle1Deg = (d1 < 1e-10) ? 0.0 : Math.Atan2(dy, dz) * 180.0 / Math.PI;
+
+            // L: độ dài toàn bộ vector P1P2
+            double L = Math.Sqrt(dx * dx + dy * dy + dz * dz);
+
+            // ∂2: góc quanh Y để triệt tiêu thành phần Z → P1P2 trùng trục Ox
+            double angle2Deg = (L < 1e-10) ? 0.0 : Math.Atan2(d1, dx) * 180.0 / Math.PI;
+
+            // B1: tịnh tiến P1 về gốc O
+            Matrix4x4 t1 = MatrixFactory.CreateTranslation3D(new Point3D(-p1.X, -p1.Y, -p1.Z));
+
+            // B2: quay quanh X góc ∂1
+            Matrix4x4 rx1 = MatrixFactory.CreateRotation3DX(angle1Deg);
+
+            // B3: quay quanh Y góc ∂2
+            Matrix4x4 ry2 = MatrixFactory.CreateRotation3DY(angle2Deg);
+
+            // B4: quay P3 quanh trục Ox góc ∂
+            Matrix4x4 rxAngle = MatrixFactory.CreateRotation3DX(angleDegrees);
+
+            // B5: nghịch đảo B3
+            Matrix4x4 ry2Inv = MatrixFactory.CreateRotation3DY(-angle2Deg);
+
+            // B6: nghịch đảo B2
+            Matrix4x4 rx1Inv = MatrixFactory.CreateRotation3DX(-angle1Deg);
+
+            // B7: tịnh tiến ngược về vị trí ban đầu
+            Matrix4x4 t7 = MatrixFactory.CreateTranslation3D(p1);
+
+            // P = P3 · T1 · Rx(∂1) · Ry(∂2) · Rx(∂) · Ry(-∂2) · Rx(-∂1) · T7
+            return t7 * rx1Inv * ry2Inv * rxAngle * ry2 * rx1 * t1;
         }
 
         /// <summary>
-        /// Ma trận xoay (rotation) quanh trục Y tại gốc tọa độ
+        /// Phép đối xứng qua trục bất kỳ P1P2 trong 3D.
+        ///
+        /// Ý tưởng: đưa trục P1P2 về trùng Ox (giống quay trục bất kỳ),
+        /// thực hiện đối xứng qua Ox (lật Y và Z) bằng CreateReflection3DX(),
+        /// rồi đảo ngược các bước căn chỉnh.
+        ///
+        /// Công thức: P = P3 · T1 · Rx(∂1) · Ry(∂2) · ReflectX · Ry(-∂2) · Rx(-∂1) · T7
         /// </summary>
-        public static Matrix4x4 BuildRotationByAxisYAtOrigin(double angleDegrees)
+        public static Matrix4x4 BuildReflectionAroundArbitraryAxis(Point3D p1, Point3D p2)
         {
-            return MatrixFactory.CreateRotation3DY(angleDegrees);
-        }
+            double dx = p2.X - p1.X;
+            double dy = p2.Y - p1.Y;
+            double dz = p2.Z - p1.Z;
 
-        /// <summary>
-        /// Ma trận xoay (rotation) quanh trục Z tại gốc tọa độ
-        /// </summary>
-        public static Matrix4x4 BuildRotationByAxisZAtOrigin(double angleDegrees)
-        {
-            return MatrixFactory.CreateRotation3DZ(angleDegrees);
-        }
+            double d1 = Math.Sqrt(dy * dy + dz * dz);
+            double angle1Deg = (d1 < 1e-10) ? 0.0 : Math.Atan2(dy, dz) * 180.0 / Math.PI;
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua gốc tọa độ (Origin)
-        /// Lật cả X, Y, Z
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByOrigin()
-        {
-            return MatrixFactory.CreateReflection3DOrigin();
-        }
+            double L = Math.Sqrt(dx * dx + dy * dy + dz * dz);
+            double angle2Deg = (L < 1e-10) ? 0.0 : Math.Atan2(d1, dx) * 180.0 / Math.PI;
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua trục Ox
-        /// Lật Y và Z, giữ X
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByAxisX()
-        {
-            return MatrixFactory.CreateReflection3DX();
-        }
+            // B1: tịnh tiến P1 về gốc O
+            Matrix4x4 t1 = MatrixFactory.CreateTranslation3D(new Point3D(-p1.X, -p1.Y, -p1.Z));
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua trục Oy
-        /// Lật X và Z, giữ Y
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByAxisY()
-        {
-            return MatrixFactory.CreateReflection3DY();
-        }
+            // B2: quay quanh X góc ∂1
+            Matrix4x4 rx1 = MatrixFactory.CreateRotation3DX(angle1Deg);
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua trục Oz
-        /// Lật X và Y, giữ Z
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByAxisZ()
-        {
-            return MatrixFactory.CreateReflection3DZ();
-        }
+            // B3: quay quanh Y góc ∂2
+            Matrix4x4 ry2 = MatrixFactory.CreateRotation3DY(angle2Deg);
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua mặt phẳng Oxy
-        /// Lật Z, giữ X và Y
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByPlaneXY()
-        {
-            return MatrixFactory.CreateReflection3DXY();
-        }
+            // B4: đối xứng qua trục Ox (lật Y và Z) — dùng MatrixFactory
+            Matrix4x4 reflectX = MatrixFactory.CreateReflection3DX();
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua mặt phẳng Xz
-        /// Lật Y, giữ X và Z
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByPlaneXZ()
-        {
-            return MatrixFactory.CreateReflection3DXZ();
-        }
+            // B5: nghịch đảo B3
+            Matrix4x4 ry2Inv = MatrixFactory.CreateRotation3DY(-angle2Deg);
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua mặt phẳng Yz
-        /// Lật X, giữ Y và Z
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByPlaneYZ()
-        {
-            return MatrixFactory.CreateReflection3DYZ();
-        }
+            // B6: nghịch đảo B2
+            Matrix4x4 rx1Inv = MatrixFactory.CreateRotation3DX(-angle1Deg);
 
-        /// <summary>
-        /// Ma trận đối xứng (reflection) qua một điểm pivot bất kỳ
-        /// = phép scale(-1, -1, -1) quanh pivot
-        /// </summary>
-        public static Matrix4x4 BuildReflectionByPoint(Point3D pivot)
-        {
-            // Đối xứng qua điểm = scale(-1,-1,-1) quanh điểm đó
-            return BuildScaleByPoint(pivot, -1, -1, -1);
-        }
+            // B7: tịnh tiến ngược về vị trí ban đầu
+            Matrix4x4 t7 = MatrixFactory.CreateTranslation3D(p1);
 
-        /// <summary>
-        /// Phép biến dạng (Shearing) 3D - toàn bộ 6 tham số
-        /// Công thức:
-        /// xq = x + hxy*y + hxz*z
-        /// yq = y + hyx*x + hyz*z
-        /// zq = z + hzx*x + hzy*y
-        /// </summary>
-        public static Matrix4x4 BuildShearing(double hxy, double hxz, double hyx, double hyz, double hzx, double hzy)
-        {
-            return MatrixFactory.CreateShearing3D(hxy, hxz, hyx, hyz, hzx, hzy);
-        }
-
-        /// <summary>
-        /// Phép biến dạng theo trục X
-        /// Công thức: xq = x + hxy*y + hxz*z
-        /// Y và Z không thay đổi
-        /// </summary>
-        public static Matrix4x4 BuildShearingAlongAxisX(double hxy, double hxz)
-        {
-            return MatrixFactory.CreateShearingX(hxy, hxz);
-        }
-
-        /// <summary>
-        /// Phép biến dạng theo trục Y
-        /// Công thức: yq = y + hyx*x + hyz*z
-        /// X và Z không thay đổi
-        /// </summary>
-        public static Matrix4x4 BuildShearingAlongAxisY(double hyx, double hyz)
-        {
-            return MatrixFactory.CreateShearingY(hyx, hyz);
-        }
-
-        /// <summary>
-        /// Phép biến dạng theo trục Z
-        /// Công thức: zq = z + hzx*x + hzy*y
-        /// X và Y không thay đổi
-        /// </summary>
-        public static Matrix4x4 BuildShearingAlongAxisZ(double hzx, double hzy)
-        {
-            return MatrixFactory.CreateShearingZ(hzx, hzy);
-        }
-
-        /// <summary>
-        /// Phép biến dạng trong mặt phẳng XY (Z không thay đổi)
-        /// Công thức:
-        /// xq = x + hxy*y
-        /// yq = y + hyx*x
-        /// z không thay đổi
-        /// </summary>
-        public static Matrix4x4 BuildShearingInPlaneXY(double hxy, double hyx)
-        {
-            return MatrixFactory.CreateShearing3D(hxy, 0, hyx, 0, 0, 0);
-        }
-
-        /// <summary>
-        /// Phép biến dạng trong mặt phẳng XZ (Y không thay đổi)
-        /// Công thức:
-        /// xq = x + hxz*z
-        /// zq = z + hzx*x
-        /// y không thay đổi
-        /// </summary>
-        public static Matrix4x4 BuildShearingInPlaneXZ(double hxz, double hzx)
-        {
-            return MatrixFactory.CreateShearing3D(0, hxz, 0, 0, hzx, 0);
-        }
-
-        /// <summary>
-        /// Phép biến dạng trong mặt phẳng YZ (X không thay đổi)
-        /// Công thức:
-        /// yq = y + hyz*z
-        /// zq = z + hzy*y
-        /// x không thay đổi
-        /// </summary>
-        public static Matrix4x4 BuildShearingInPlaneYZ(double hyz, double hzy)
-        {
-            return MatrixFactory.CreateShearing3D(0, 0, 0, hyz, 0, hzy);
+            // P = P3 · T1 · Rx(∂1) · Ry(∂2) · ReflectX · Ry(-∂2) · Rx(-∂1) · T7
+            return t7 * rx1Inv * ry2Inv * reflectX * ry2 * rx1 * t1;
         }
     }
 }
