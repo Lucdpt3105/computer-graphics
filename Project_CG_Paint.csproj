@@ -57,6 +57,8 @@
     <Compile Include="Algorithms\Rasterization\Shape2D\ParallelogramRasterizer.cs" />
     <Compile Include="Algorithms\Rasterization\Shape2D\PolygonRasterizer.cs" />
     <Compile Include="Algorithms\Rasterization\Shape2D\RectangleRasterizer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\Shape2DComposer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\Shape2DFill.cs" />
     <Compile Include="Algorithms\Rasterization\Shape2D\TriangleRasterizer.cs" />
     <Compile Include="Algorithms\Rasterization\Shape3D\CubeWireFrame.cs" />
     <Compile Include="Algorithms\Rasterization\Shape3D\CylinderWireFrame.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="CoreModel\Model\Point3D.cs" />
     <Compile Include="Data\Objects\GraphicObject.cs" />
     <Compile Include="Data\Scene\Scene.cs" />
+    <Compile Include="Data\Scene\DemoSceneFactory.cs" />
     <Compile Include="Data\Scene\SceneNode.cs" />
     <Compile Include="Forms\Animation\AnimationForm.cs">
       <SubType>Form</SubType>

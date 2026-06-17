@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
@@ -13,7 +14,9 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
         /// </summary>
         public static List<Point2D> RasterizePoints(Point2D vertex1, Point2D vertex2, Point2D vertex3)
         {
-            return RasterizePoints(vertex1, vertex2, vertex3, Shape2DFill.SolidFill);
+            return RasterizePoints(vertex1, vertex2, vertex3, Shape2DFill.SolidFill)
+                .Select(coloredPoint => coloredPoint.Point)
+                .ToList();
         }
 
         public static List<ColoredPoint> RasterizeColoredPoints(Point2D vertex1, Point2D vertex2, Point2D vertex3, Color color)

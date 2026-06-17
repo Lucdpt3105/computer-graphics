@@ -14,7 +14,9 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
         /// </summary>
         public static List<Point2D> RasterizePoints(Point2D center, double radiusX, double radiusY)
         {
-            return RasterizePoints(center, radiusX, radiusY, Shape2DFill.SolidFill);
+            return RasterizePoints(center, radiusX, radiusY, Shape2DFill.SolidFill)
+                .Select(coloredPoint => coloredPoint.Point)
+                .ToList();
         }
 
         public static List<ColoredPoint> RasterizeColoredPoints(Point2D center, double radiusX, double radiusY, Color color)

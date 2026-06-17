@@ -202,6 +202,28 @@ namespace Project_CG_Paint.CoreModel.Model
                 { 0, 0, 0, 1 }
             });
         }
+        public static Matrix4x4 CreateShearing3D(double hxy, double hxz, double hyx, double hyz, double hzx, double hzy)
+        {
+            return new Matrix4x4(new double[,]
+            {
+                { 1, hyx, hzx, 0 },
+                { hxy, 1, hzy, 0 },
+                { hxz, hyz, 1, 0 },
+                { 0, 0, 0, 1 }
+            });
+        }
+        public static Matrix4x4 CreateShearingX(double hxy, double hxz)
+        {
+            return CreateShearing3D(hxy, hxz, 0, 0, 0, 0);
+        }
+        public static Matrix4x4 CreateShearingY(double hyx, double hyz)
+        {
+            return CreateShearing3D(0, 0, hyx, hyz, 0, 0);
+        }
+        public static Matrix4x4 CreateShearingZ(double hzx, double hzy)
+        {
+            return CreateShearing3D(0, 0, 0, 0, hzx, hzy);
+        }
         public static Matrix4x4 CreateCavalierProjection(double angleDegrees = 45)
         {
             double angleRadians = angleDegrees * Math.PI / 180.0;
