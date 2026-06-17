@@ -221,7 +221,7 @@ namespace Project_CG_Paint.CoreModel.Model
         public static Matrix4x4 CreateCabinetProjection(double angleDegrees = 45)
         {
             double angleRadians = angleDegrees * Math.PI / 180.0;
-            
+
             double cos = Math.Cos(angleRadians);
             double sin = Math.Sin(angleRadians);
 
@@ -230,6 +230,68 @@ namespace Project_CG_Paint.CoreModel.Model
                 { 1, 0, 0, 0 },
                 { 0, 1, 0, 0 },
                 { cos / 2, sin / 2, 0, 0 },
+                { 0, 0, 0, 1 }
+            });
+        }
+
+        /// <summary>
+        /// Phép biến dạng (Shearing) 3D
+        /// Công thức: xq = x + hxy*y + hxz*z
+        ///           yq = y + hyx*x + hyz*z
+        ///           zq = z + hzx*x + hzy*y
+        /// </summary>
+        public static Matrix4x4 CreateShearing3D(double hxy, double hxz, double hyx, double hyz, double hzx, double hzy)
+        {
+            return new Matrix4x4(new double[,]
+            {
+                { 1, hyx, hzx, 0 },
+                { hxy, 1, hzy, 0 },
+                { hxz, hyz, 1, 0 },
+                { 0, 0, 0, 1 }
+            });
+        }
+
+        /// <summary>
+        /// Phép biến dạng theo trục X (lấy Y và Z làm tham chiếu)
+        /// xq = x + hxy*y + hxz*z, y không thay đổi, z không thay đổi
+        /// </summary>
+        public static Matrix4x4 CreateShearingX(double hxy, double hxz)
+        {
+            return new Matrix4x4(new double[,]
+            {
+                { 1, 0, 0, 0 },
+                { hxy, 1, 0, 0 },
+                { hxz, 0, 1, 0 },
+                { 0, 0, 0, 1 }
+            });
+        }
+
+        /// <summary>
+        /// Phép biến dạng theo trục Y (lấy X và Z làm tham chiếu)
+        /// x không thay đổi, yq = y + hyx*x + hyz*z, z không thay đổi
+        /// </summary>
+        public static Matrix4x4 CreateShearingY(double hyx, double hyz)
+        {
+            return new Matrix4x4(new double[,]
+            {
+                { 1, hyx, 0, 0 },
+                { 0, 1, 0, 0 },
+                { 0, hyz, 1, 0 },
+                { 0, 0, 0, 1 }
+            });
+        }
+
+        /// <summary>
+        /// Phép biến dạng theo trục Z (lấy X và Y làm tham chiếu)
+        /// x không thay đổi, y không thay đổi, zq = z + hzx*x + hzy*y
+        /// </summary>
+        public static Matrix4x4 CreateShearingZ(double hzx, double hzy)
+        {
+            return new Matrix4x4(new double[,]
+            {
+                { 1, 0, hzx, 0 },
+                { 0, 1, hzy, 0 },
+                { 0, 0, 1, 0 },
                 { 0, 0, 0, 1 }
             });
         }
