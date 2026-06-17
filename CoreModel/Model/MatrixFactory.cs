@@ -202,7 +202,7 @@ namespace Project_CG_Paint.CoreModel.Model
                 { 0, 0, 0, 1 }
             });
         }
-        public static Matrix4x4 CreateCavalierProjection(double angleDegrees)
+        public static Matrix4x4 CreateCavalierProjection(double angleDegrees = 45)
         {
             double angleRadians = angleDegrees * Math.PI / 180.0;
             
@@ -218,7 +218,7 @@ namespace Project_CG_Paint.CoreModel.Model
             });
         }
 
-        public static Matrix4x4 CreateCabinetProjection(double angleDegrees)
+        public static Matrix4x4 CreateCabinetProjection(double angleDegrees = 45)
         {
             double angleRadians = angleDegrees * Math.PI / 180.0;
             
