@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
@@ -15,6 +14,16 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
         /// </summary>
         public static List<Point2D> RasterizePoints(Point2D center, double radiusX, double radiusY)
         {
+            return RasterizePoints(center, radiusX, radiusY, Shape2DFill.SolidFill);
+        }
+
+        public static List<ColoredPoint> RasterizeColoredPoints(Point2D center, double radiusX, double radiusY, Color color)
+        {
+            return RasterizePoints(center, radiusX, radiusY, point => color);
+        }
+
+        public static List<ColoredPoint> RasterizePoints(Point2D center, double radiusX, double radiusY, FillColorFunction fillColorFunction)
+        {
             List<Point2D> points = new List<Point2D>();
 
             int cx = (int)Math.Round(center.X);
@@ -22,6 +31,10 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
             int rx = (int)Math.Round(radiusX);
             int ry = (int)Math.Round(radiusY);
 
+            if (rx < 0 || ry < 0)
+                return Shape2DFill.ApplyColorFunction(points, fillColorFunction);
+
+            // Vẽ viền bằng thuật toán Midpoint
             int x = 0;
             int y = ry;
 
@@ -65,7 +78,11 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
                 }
             }
 
-            return points;
+            // Tô bên trong bằng thuật toán fill riêng
+            foreach (var p in Shape2DFill.FillEllipse(center, radiusX, radiusY))
+                points.Add(p);
+
+            return Shape2DFill.ApplyColorFunction(points, fillColorFunction);
         }
 
         /// <summary>

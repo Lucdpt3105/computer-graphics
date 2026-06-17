@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
@@ -14,6 +13,16 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
         /// Trả về danh sách các điểm trên 4 cạnh và bên trong
         /// </summary>
         public static List<Point2D> RasterizePoints(Point2D topLeft, Point2D bottomRight)
+        {
+            return RasterizePoints(topLeft, bottomRight, Shape2DFill.SolidFill);
+        }
+
+        public static List<ColoredPoint> RasterizeColoredPoints(Point2D topLeft, Point2D bottomRight, Color color)
+        {
+            return RasterizePoints(topLeft, bottomRight, point => color);
+        }
+
+        public static List<ColoredPoint> RasterizePoints(Point2D topLeft, Point2D bottomRight, FillColorFunction fillColorFunction)
         {
             HashSet<Point2D> points = new HashSet<Point2D>();
 
@@ -31,21 +40,16 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
             foreach (var p in left) points.Add(p);
             foreach (var p in right) points.Add(p);
 
-            // Tô bên trong
+            // Tô bên trong bằng thuật toán fill riêng
             int yMin = (int)Math.Round(topLeft.Y);
             int yMax = (int)Math.Round(bottomRight.Y);
             int xMin = (int)Math.Round(topLeft.X);
             int xMax = (int)Math.Round(bottomRight.X);
 
-            for (int y = yMin; y <= yMax; y++)
-            {
-                for (int x = xMin; x <= xMax; x++)
-                {
-                    points.Add(new Point2D(x, y));
-                }
-            }
+            foreach (var p in Shape2DFill.FillRectangle(xMin, yMin, xMax, yMax))
+                points.Add(p);
 
-            return points.ToList();
+            return Shape2DFill.ApplyColorFunction(points, fillColorFunction);
         }
     }
 }

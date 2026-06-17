@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
@@ -18,6 +16,16 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
         /// </summary>
         public static List<Point2D> RasterizePoints(Point2D vertexA, Point2D vertexB, Point2D vertexC)
         {
+            return RasterizePoints(vertexA, vertexB, vertexC, Shape2DFill.SolidFill);
+        }
+
+        public static List<ColoredPoint> RasterizeColoredPoints(Point2D vertexA, Point2D vertexB, Point2D vertexC, Color color)
+        {
+            return RasterizePoints(vertexA, vertexB, vertexC, point => color);
+        }
+
+        public static List<ColoredPoint> RasterizePoints(Point2D vertexA, Point2D vertexB, Point2D vertexC, FillColorFunction fillColorFunction)
+        {
             HashSet<Point2D> points = new HashSet<Point2D>();
 
             // Tính đỉnh thứ 4
@@ -32,11 +40,11 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
             foreach (var p in BresenhamLine.RasterizePoints(vertexC, vertexD)) points.Add(p);
             foreach (var p in BresenhamLine.RasterizePoints(vertexD, vertexA)) points.Add(p);
 
-            // Tô bên trong = 2 tam giác ABC + ACD
-            foreach (var p in TriangleRasterizer.RasterizePoints(vertexA, vertexB, vertexC)) points.Add(p);
-            foreach (var p in TriangleRasterizer.RasterizePoints(vertexA, vertexC, vertexD)) points.Add(p);
+            // Tô bên trong bằng thuật toán fill riêng
+            foreach (var p in Shape2DFill.FillPolygon(new List<Point2D> { vertexA, vertexB, vertexC, vertexD }))
+                points.Add(p);
 
-            return points.ToList();
+            return Shape2DFill.ApplyColorFunction(points, fillColorFunction);
         }
     }
 }
