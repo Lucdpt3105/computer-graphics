@@ -57,6 +57,7 @@
     <Compile Include="Algorithms\Rasterization\Shape2D\ParallelogramRasterizer.cs" />
     <Compile Include="Algorithms\Rasterization\Shape2D\PolygonRasterizer.cs" />
     <Compile Include="Algorithms\Rasterization\Shape2D\RectangleRasterizer.cs" />
+    <Compile Include="Algorithms\Rasterization\Shape2D\Shape2DFill.cs" />
     <Compile Include="Algorithms\Rasterization\Shape2D\TriangleRasterizer.cs" />
     <Compile Include="Algorithms\Rasterization\Shape3D\CubeWireFrame.cs" />
     <Compile Include="Algorithms\Rasterization\Shape3D\CylinderWireFrame.cs" />
