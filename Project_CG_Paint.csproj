@@ -76,6 +76,7 @@
     <Compile Include="CoreModel\Model\Point3D.cs" />
     <Compile Include="Data\Objects\GraphicObject.cs" />
     <Compile Include="Data\Scene\Scene.cs" />
+    <Compile Include="Data\Scene\SceneNode.cs" />
     <Compile Include="Forms\Animation\AnimationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +140,11 @@
     <Content Include="ICO\triangle.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\Animation\" />
+    <Folder Include="Data\Metadata\" />
+    <Folder Include="Data\Shapes2D\" />
+    <Folder Include="Data\Shapes3D\" />
+    <Folder Include="Data\Transform\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

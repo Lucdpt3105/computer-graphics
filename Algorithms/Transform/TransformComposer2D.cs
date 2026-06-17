@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_CG_Paint.CoreModel.Geometry;
 using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Algorithms.Transform
@@ -68,10 +69,11 @@ namespace Project_CG_Paint.Algorithms.Transform
         /// </summary>
         public static Matrix3x3 BuildReflectionByLine(Point2D start, Point2D end)
         {
-            // Tính góc của đường thẳng so với trục X
-            double dx = end.X - start.X;
-            double dy = end.Y - start.Y;
-            double angleDegrees = Math.Atan2(dy, dx) * 180.0 / Math.PI;
+            Point2D origin = new Point2D(0,0);
+            Point2D pointEnd = new Point2D(end.X, end.Y);
+            
+            Edge<Point2D> edge = new Edge<Point2D>(origin, pointEnd);
+            double angleDegrees = Edge<Point2D>.AngleBetweenOx(edge);
 
             // B1: Tịnh tiến start về gốc
             Matrix3x3 toOrigin = MatrixFactory.CreateTranslation2D(new Point2D(-start.X, -start.Y));
