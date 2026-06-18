@@ -12,6 +12,7 @@ Release/
 # Visual Studio Cache
 # ==========================================
 .vs/
+.github/
 
 # ==========================================
 # User-specific files

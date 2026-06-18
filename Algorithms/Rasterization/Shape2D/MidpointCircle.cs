@@ -1,8 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
@@ -10,46 +7,48 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
     public static class MidpointCircle
     {
         /// <summary>
-        /// Triển khai thuật toán Midpoint (Bresenham) để vẽ đường tròn
-        /// Sinh các điểm trên đường tròn với tâm (center) và bán kính (radius)
+        /// Trien khai thuat toan Midpoint de sinh cac diem cua duong tron va mien trong.
         /// </summary>
         public static List<Point2D> RasterizePoints(Point2D center, double radius)
         {
-            List<Point2D> points = new List<Point2D>();
+            HashSet<Point2D> points = new HashSet<Point2D>();
 
             int cx = (int)Math.Round(center.X);
             int cy = (int)Math.Round(center.Y);
             int r = (int)Math.Round(radius);
 
+            if (r < 0)
+                return new List<Point2D>();
+
             int x = 0;
             int y = r;
-            int p = 1 - r; // Decision parameter
+            int decision = 1 - r;
 
-            // Add initial symmetric points
             AddCircleSymmetricPoints(points, cx, cy, x, y);
 
             while (x < y)
             {
                 x++;
-                if (p < 0)
+                if (decision < 0)
                 {
-                    p += 2 * x + 1;
+                    decision += 2 * x + 1;
                 }
                 else
                 {
                     y--;
-                    p += 2 * (x - y) + 1;
+                    decision += 2 * (x - y) + 1;
                 }
+
                 AddCircleSymmetricPoints(points, cx, cy, x, y);
             }
 
-            return points;
+            foreach (var point in Shape2DFill.FillCircle(center, radius))
+                points.Add(point);
+
+            return new List<Point2D>(points);
         }
 
-        /// <summary>
-        /// Thêm 8 điểm đối xứng của (x, y) quanh tâm (cx, cy)
-        /// </summary>
-        private static void AddCircleSymmetricPoints(List<Point2D> points, int cx, int cy, int x, int y)
+        private static void AddCircleSymmetricPoints(HashSet<Point2D> points, int cx, int cy, int x, int y)
         {
             points.Add(new Point2D(cx + x, cy + y));
             points.Add(new Point2D(cx - x, cy + y));
