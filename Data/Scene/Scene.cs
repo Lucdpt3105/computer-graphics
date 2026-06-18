@@ -10,6 +10,8 @@ namespace Project_CG_Paint.Data.Scene
     public class Scene
     {
         public string Name { get; set; }
-        public List<GraphicObject> RootObjects { get; set; } = new List<GraphicObject>();
+        public CompositeEntity Root { get; set; } = new CompositeEntity();
+        public double DurationSeconds { get; set; } = 5.0;
+        public int FramesPerSecond { get; set; } = 30;
     }
 }

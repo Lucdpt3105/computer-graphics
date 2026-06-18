@@ -92,7 +92,6 @@
     <Compile Include="Data\Metadata\ObjectMetadata.cs" />
     <Compile Include="Data\Objects\GraphicObject.cs" />
     <Compile Include="Data\Scene\Scene.cs" />
-    <Compile Include="Data\Scene\SceneNode.cs" />
     <Compile Include="Data\Shapes2D\CircleShape.cs" />
     <Compile Include="Data\Shapes2D\DiamondShape.cs" />
     <Compile Include="Data\Shapes2D\EllipseShape.cs" />
