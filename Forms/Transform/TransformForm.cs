@@ -16,5 +16,10 @@ namespace Project_CG_Paint.Forms.Transform
         {
             InitializeComponent();
         }
+
+        private void TransformForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

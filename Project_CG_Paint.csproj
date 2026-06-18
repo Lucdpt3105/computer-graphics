@@ -102,6 +102,9 @@
     <EmbeddedResource Include="Forms\Paint\PaintForm.resx">
       <DependentUpon>PaintForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Transform\TransformForm.resx">
+      <DependentUpon>TransformForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

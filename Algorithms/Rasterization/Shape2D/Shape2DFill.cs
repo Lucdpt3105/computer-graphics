@@ -144,7 +144,7 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
             return FillRectangle(cx - r, cy - r, cx + r, cy + r)
                 .Where(point => IsInsideCircle(point, cx, cy, r))
                 .ToList();
-        }
+        }// trả về toàn bộ các điểm raster nằm trong hình tròn, bao gồm cả biên
 
         public static List<Point2D> FillEllipse(Point2D center, double radiusX, double radiusY)
         {
