@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_CG_Paint.Data.Scene
+namespace Project_CG_Paint.Data.Shapes2D
 {
-    public class Scene
+    public class DiamondShape : Shape2D
     {
     }
 }

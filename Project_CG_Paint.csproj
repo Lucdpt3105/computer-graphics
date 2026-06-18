@@ -74,9 +74,28 @@
     <Compile Include="CoreModel\Model\MatrixFactory.cs" />
     <Compile Include="CoreModel\Model\Point2D.cs" />
     <Compile Include="CoreModel\Model\Point3D.cs" />
+    <Compile Include="Data\Animation\AnimationChannel.cs" />
+    <Compile Include="Data\Animation\AnimationData.cs" />
+    <Compile Include="Data\Animation\KeyFrame.cs" />
+    <Compile Include="Data\Metadata\ObjectMetadata.cs" />
     <Compile Include="Data\Objects\GraphicObject.cs" />
     <Compile Include="Data\Scene\Scene.cs" />
     <Compile Include="Data\Scene\SceneNode.cs" />
+    <Compile Include="Data\Shapes2D\CircleShape.cs" />
+    <Compile Include="Data\Shapes2D\DiamondShape.cs" />
+    <Compile Include="Data\Shapes2D\EllipseShape.cs" />
+    <Compile Include="Data\Shapes2D\LineShape.cs" />
+    <Compile Include="Data\Shapes2D\ParallelogramShape.cs" />
+    <Compile Include="Data\Shapes2D\PolygonShape.cs" />
+    <Compile Include="Data\Shapes2D\RectangleShape.cs" />
+    <Compile Include="Data\Shapes2D\Shape2D.cs" />
+    <Compile Include="Data\Shapes2D\TriangleShape.cs" />
+    <Compile Include="Data\Shapes3D\Shape3D.cs" />
+    <Compile Include="Data\Shapes3D\WireframeStyle.cs" />
+    <Compile Include="Data\ShapeStyle\LinePattern.cs" />
+    <Compile Include="Data\ShapeStyle\ShapeStyles.cs" />
+    <Compile Include="Data\Transform\TransformRecord.cs" />
+    <Compile Include="Data\Transform\TransformType.cs" />
     <Compile Include="Forms\Animation\AnimationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,11 +159,7 @@
     <Content Include="ICO\triangle.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Animation\" />
-    <Folder Include="Data\Metadata\" />
-    <Folder Include="Data\Shapes2D\" />
-    <Folder Include="Data\Shapes3D\" />
-    <Folder Include="Data\Transform\" />
+    <Folder Include="Data\Entity\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

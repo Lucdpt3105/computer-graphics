@@ -17,15 +17,5 @@ namespace Project_CG_Paint.CoreModel.Geometry
         public double Width => MaxX - MinX;
         public double Height => MaxY - MinY;
         public double Depth => MaxZ - MinZ;
-
-        public BoundingBox3D(double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
-        {
-            MinX = minX;
-            MinY = minY;
-            MinZ = minZ;
-            MaxX = maxX;
-            MaxY = maxY;
-            MaxZ = maxZ;
-        }
     }
 }
