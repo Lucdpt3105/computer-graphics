@@ -6,7 +6,7 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape3D
 {
     public static class PyramidWireFrame
     {
-        public static (List<Point3D> Vertices, List<Edge<Point3D>> Edges)
+        public static (List<Point3D> Vertices, List<Edge<Point3D>> Edges, List<Face> Faces)
             Generate(double baseWidth, double baseDepth, double height)
         {
             double w = baseWidth / 2.0;
@@ -35,8 +35,16 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape3D
                 new Edge<Point3D>(v[0], v[3]),
                 new Edge<Point3D>(v[0], v[4]),
             };
+            var faces = new List<Face>
+            {
+                new Face(new List<int>{1,2,3,4}, new List<int>{0,1,2,3},v),
+                new Face(new List<int>{0,2,1}, new List<int>{5,0,4}, v),
+                new Face(new List<int>{0,3,2}, new List<int>{6,1,5}, v),
+                new Face(new List<int>{0,4,3}, new List<int>{7,2,6}, v),
+                new Face(new List<int>{0,1,4}, new List<int>{4,3,7}, v),
+            };
 
-            return (v, e);
+            return (v, e, faces);
         }
     }
 }
