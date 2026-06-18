@@ -16,7 +16,7 @@ namespace Project_CG_Paint
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PaintForm());
+            Application.Run(new Forms.Paint.PaintForm());
         }
     }
 }

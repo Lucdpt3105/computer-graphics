@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_CG_Paint.Controllers.Drawing
+namespace Project_CG_Paint.Controllers.Transform
 {
-    internal class DrawingController
+    public class TransformController
     {
     }
 }
