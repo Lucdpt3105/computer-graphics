@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Project_CG_Paint.Data.Animation;
 using Project_CG_Paint.Data.Transform;
+using Project_CG_Paint.CoreModel.Model;
 
 namespace Project_CG_Paint.Data.Objects
 {
