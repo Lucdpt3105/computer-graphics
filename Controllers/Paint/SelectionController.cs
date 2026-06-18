@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_CG_Paint.Controllers.Paint
 {
-    internal class SelectionController
+    public class SelectionController
     {
     }
 }
