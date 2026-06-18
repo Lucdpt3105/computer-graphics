@@ -6,7 +6,7 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape3D
 {
     public static class CubeWireFrame
     {
-        public static (List<Point3D> Vertices, List<Edge<Point3D>> Edges)
+        public static (List<Point3D> Vertices, List<Edge<Point3D>> Edges, List<Face> Faces)
             Generate(double size)
         {
             double s = size / 2.0;
@@ -40,8 +40,16 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape3D
                 new Edge<Point3D>(v[2], v[6]),
                 new Edge<Point3D>(v[3], v[7]),
             };
-
-            return (v, e);
+            var faces = new List<Face>
+            {
+                new Face(new List<int>{4,5,6,7}, new List<int>{4,5,6,7}, v),
+                new Face(new List<int>{0,3,2,1}, new List<int>{3,2,1,0}, v),
+                new Face(new List<int>{0,1,5,4}, new List<int>{0,9,4,8}, v),
+                new Face(new List<int>{3,7,6,2}, new List<int>{11,6,10,2}, v),
+                new Face(new List<int>{0,4,7,3}, new List<int>{8,7,11,3}, v),
+                new Face(new List<int>{1,2,6,5}, new List<int>{1,10,5,9}, v),
+            };
+            return (v, e, faces);
         }
     }
 }
