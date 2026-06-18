@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project_CG_Paint.CoreModel.Model;
+using Project_CG_Paint.Data.Objects;
 
 namespace Project_CG_Paint.Data.Shapes3D
 {

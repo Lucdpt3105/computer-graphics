@@ -88,7 +88,7 @@
     <Compile Include="Data\Animation\AnimationChannel.cs" />
     <Compile Include="Data\Animation\AnimationData.cs" />
     <Compile Include="Data\Animation\KeyFrame.cs" />
-    <Compile Include="Data\CompositeEntity\CompositeEntity.cs" />
+    <Compile Include="Data\Objects\CompositeEntity.cs" />
     <Compile Include="Data\Metadata\ObjectMetadata.cs" />
     <Compile Include="Data\Objects\GraphicObject.cs" />
     <Compile Include="Data\Scene\Scene.cs" />
@@ -99,13 +99,13 @@
     <Compile Include="Data\Shapes2D\ParallelogramShape.cs" />
     <Compile Include="Data\Shapes2D\PolygonShape.cs" />
     <Compile Include="Data\Shapes2D\RectangleShape.cs" />
-    <Compile Include="Data\Shapes2D\Shape2D.cs" />
+    <Compile Include="Data\Objects\Shape2D.cs" />
     <Compile Include="Data\Shapes2D\TriangleShape.cs" />
     <Compile Include="Data\Shapes3D\CubeShape.cs" />
     <Compile Include="Data\Shapes3D\CylinderShape.cs" />
     <Compile Include="Data\Shapes3D\PrismShape.cs" />
     <Compile Include="Data\Shapes3D\PyramidShape.cs" />
-    <Compile Include="Data\Shapes3D\Shape3D.cs" />
+    <Compile Include="Data\Objects\Shape3D.cs" />
     <Compile Include="Data\Shapes3D\SphereShape.cs" />
     <Compile Include="Data\Shapes3D\WireframeStyle.cs" />
     <Compile Include="Data\ShapeStyle\LinePattern.cs" />
@@ -133,8 +133,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\RenderService.cs" />
+    <EmbeddedResource Include="Forms\Animation\AnimationForm.resx">
+      <DependentUpon>AnimationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Paint\PaintForm.resx">
       <DependentUpon>PaintForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Transform\TransformForm.resx">
+      <DependentUpon>TransformForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -165,9 +172,15 @@
     <Content Include="ICO\cube.ico" />
     <Content Include="ICO\cursor.ico" />
     <Content Include="ICO\cylinder.ico" />
+    <Content Include="ICO\diamond.ico" />
     <Content Include="ICO\fill.ico" />
     <Content Include="ICO\line.ico" />
     <Content Include="ICO\oval.ico" />
+    <Content Include="ICO\parallelogram.png" />
+    <Content Include="ICO\point.ico" />
+    <Content Include="ICO\polygon.ico" />
+    <Content Include="ICO\prism.ico" />
+    <Content Include="ICO\pyramid.ico" />
     <Content Include="ICO\rectangle.ico" />
     <Content Include="ICO\shape_outline.ico" />
     <Content Include="ICO\shape_size.ico" />
@@ -175,6 +188,7 @@
     <Content Include="ICO\triangle.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\CompositeEntity\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

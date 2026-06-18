@@ -16,5 +16,10 @@ namespace Project_CG_Paint.Forms.Animation
         {
             InitializeComponent();
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
