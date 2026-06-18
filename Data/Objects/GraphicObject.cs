@@ -19,5 +19,6 @@ namespace Project_CG_Paint.Data.Objects
         public ShapeStyles Style { get; set; } = new ShapeStyles();
         public AnimationData AnimationData { get; set; } = new AnimationData();
         public Queue<TransformRecord> TransformHistory { get; set; } = new Queue<TransformRecord>();
+        public GraphicObject Parent { get; set; }
     }
 }

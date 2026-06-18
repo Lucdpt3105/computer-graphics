@@ -14,5 +14,6 @@ namespace Project_CG_Paint.Data.Shapes2D
         public Point2D Pivot { get; set; } = new Point2D();
         public List<Point2D> Vertices { get; set; } = new List<Point2D>();
         public List<Edge<Point2D>> Edges { get; set; } = new List<Edge<Point2D>>();
+
     }
 }
