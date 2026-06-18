@@ -169,6 +169,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="ICO\circle.ico" />
+    <Content Include="ICO\clear.ico" />
     <Content Include="ICO\cube.ico" />
     <Content Include="ICO\cursor.ico" />
     <Content Include="ICO\cylinder.ico" />
@@ -182,6 +183,9 @@
     <Content Include="ICO\prism.ico" />
     <Content Include="ICO\pyramid.ico" />
     <Content Include="ICO\rectangle.ico" />
+    <Content Include="ICO\reflectO.ico" />
+    <Content Include="ICO\reflectX.ico" />
+    <Content Include="ICO\reflectY.ico" />
     <Content Include="ICO\shape_outline.ico" />
     <Content Include="ICO\shape_size.ico" />
     <Content Include="ICO\sphere.ico" />
