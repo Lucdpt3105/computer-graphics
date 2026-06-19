@@ -20,7 +20,7 @@ namespace Project_CG_Paint.Algorithms.Transform
 
         /// <summary>
         /// Ma trận tỷ lệ (scale) quanh một tâm pivot bất kỳ trong 3D
-        /// Công thức: T(pivot) × Scale(sx, sy, sz) × T(-pivot)
+        /// Công thức theo row-vector: T(-pivot) × Scale(sx, sy, sz) × T(pivot)
         /// </summary>
         public static Matrix4x4 BuildScaleByPoint(Point3D pivot, double scaleX, double scaleY, double scaleZ)
         {
@@ -31,13 +31,13 @@ namespace Project_CG_Paint.Algorithms.Transform
             // B3: Tịnh tiến ngược lại vị trí ban đầu
             Matrix4x4 fromOrigin = MatrixFactory.CreateTranslation3D(pivot);
 
-            // Kết hợp: point × T(pivot) × Scale × T(-pivot)
-            return fromOrigin * scale * toOrigin;
+            // Kết hợp: point × T(-pivot) × Scale × T(pivot)
+            return toOrigin * scale * fromOrigin;
         }
 
         /// <summary>
         /// Ma trận xoay (rotation) quanh trục X, quanh một tâm pivot bất kỳ
-        /// Công thức: T(pivot) × RotationX(angle) × T(-pivot)
+        /// Công thức theo row-vector: T(-pivot) × RotationX(angle) × T(pivot)
         /// </summary>
         public static Matrix4x4 BuildRotationByAxisXAroundPoint(Point3D pivot, double angleDegrees)
         {
@@ -48,13 +48,13 @@ namespace Project_CG_Paint.Algorithms.Transform
             // B3: Tịnh tiến ngược lại
             Matrix4x4 fromOrigin = MatrixFactory.CreateTranslation3D(pivot);
 
-            // Kết hợp: point × T(pivot) × RotationX × T(-pivot)
-            return fromOrigin * rotationX * toOrigin;
+            // Kết hợp: point × T(-pivot) × RotationX × T(pivot)
+            return toOrigin * rotationX * fromOrigin;
         }
 
         /// <summary>
         /// Ma trận xoay (rotation) quanh trục Y, quanh một tâm pivot bất kỳ
-        /// Công thức: T(pivot) × RotationY(angle) × T(-pivot)
+        /// Công thức theo row-vector: T(-pivot) × RotationY(angle) × T(pivot)
         /// </summary>
         public static Matrix4x4 BuildRotationByAxisYAroundPoint(Point3D pivot, double angleDegrees)
         {
@@ -65,13 +65,13 @@ namespace Project_CG_Paint.Algorithms.Transform
             // B3: Tịnh tiến ngược lại
             Matrix4x4 fromOrigin = MatrixFactory.CreateTranslation3D(pivot);
 
-            // Kết hợp: point × T(pivot) × RotationY × T(-pivot)
-            return fromOrigin * rotationY * toOrigin;
+            // Kết hợp: point × T(-pivot) × RotationY × T(pivot)
+            return toOrigin * rotationY * fromOrigin;
         }
 
         /// <summary>
         /// Ma trận xoay (rotation) quanh trục Z, quanh một tâm pivot bất kỳ
-        /// Công thức: T(pivot) × RotationZ(angle) × T(-pivot)
+        /// Công thức theo row-vector: T(-pivot) × RotationZ(angle) × T(pivot)
         /// </summary>
         public static Matrix4x4 BuildRotationByAxisZAroundPoint(Point3D pivot, double angleDegrees)
         {
@@ -82,8 +82,8 @@ namespace Project_CG_Paint.Algorithms.Transform
             // B3: Tịnh tiến ngược lại
             Matrix4x4 fromOrigin = MatrixFactory.CreateTranslation3D(pivot);
 
-            // Kết hợp: point × T(pivot) × RotationZ × T(-pivot)
-            return fromOrigin * rotationZ * toOrigin;
+            // Kết hợp: point × T(-pivot) × RotationZ × T(pivot)
+            return toOrigin * rotationZ * fromOrigin;
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Project_CG_Paint.Algorithms.Transform
             Matrix4x4 t7 = MatrixFactory.CreateTranslation3D(p1);
 
             // P = P3 · T1 · Rx(∂1) · Ry(∂2) · Rx(∂) · Ry(-∂2) · Rx(-∂1) · T7
-            return t7 * rx1Inv * ry2Inv * rxAngle * ry2 * rx1 * t1;
+            return t1 * rx1 * ry2 * rxAngle * ry2Inv * rx1Inv * t7;
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Project_CG_Paint.Algorithms.Transform
             Matrix4x4 t7 = MatrixFactory.CreateTranslation3D(p1);
 
             // P = P3 · T1 · Rx(∂1) · Ry(∂2) · ReflectX · Ry(-∂2) · Rx(-∂1) · T7
-            return t7 * rx1Inv * ry2Inv * reflectX * ry2 * rx1 * t1;
+            return t1 * rx1 * ry2 * reflectX * ry2Inv * rx1Inv * t7;
         }
     }
 }

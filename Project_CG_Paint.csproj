@@ -75,8 +75,12 @@
     <Compile Include="Controllers\Paint\SceneController.cs" />
     <Compile Include="Controllers\Paint\SelectionController.cs" />
     <Compile Include="Controllers\Paint\ToolAndDrawContext.cs" />
+    <Compile Include="Forms\Paint\Shape3DInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Services\AnimationService.cs" />
     <Compile Include="Services\InspectorService.cs" />
+    <Compile Include="Services\MethodApplyPattern.cs" />
     <Compile Include="Services\RenderService.cs" />
     <Compile Include="Services\SceneManager.cs" />
     <Compile Include="Controllers\Transform\TransformController.cs" />
@@ -136,6 +140,7 @@
     <Compile Include="Forms\Paint\PaintForm.Designer.cs">
       <DependentUpon>PaintForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Paint\Shape3DInputDialog.cs" />
     <Compile Include="Forms\Transform\TransformForm.cs">
       <SubType>Form</SubType>
     </Compile>

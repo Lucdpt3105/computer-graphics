@@ -20,7 +20,7 @@ namespace Project_CG_Paint.Algorithms.Transform
 
         /// <summary>
         /// Ma trận tỷ lệ (scale) quanh một tâm pivot bất kỳ
-        /// Công thức: T(pivot) × Scale(sx, sy) × T(-pivot)
+        /// Công thức theo row-vector: T(-pivot) × Scale(sx, sy) × T(pivot)
         /// </summary>
         public static Matrix3x3 BuildScaleByPoint(Point2D pivot, double scaleX, double scaleY)
         {
@@ -31,13 +31,13 @@ namespace Project_CG_Paint.Algorithms.Transform
             // B3: Tịnh tiến ngược lại vị trí ban đầu
             Matrix3x3 fromOrigin = MatrixFactory.CreateTranslation2D(pivot);
 
-            // Kết hợp: point × T(pivot) × Scale × T(-pivot)
-            return fromOrigin * scale * toOrigin;
+            // Kết hợp: point × T(-pivot) × Scale × T(pivot)
+            return toOrigin * scale * fromOrigin;
         }
 
         /// <summary>
         /// Ma trận xoay (rotation) quanh một tâm pivot bất kỳ
-        /// Công thức: T(pivot) × Rotation(angle) × T(-pivot)
+        /// Công thức theo row-vector: T(-pivot) × Rotation(angle) × T(pivot)
         /// </summary>
         public static Matrix3x3 BuildRotationByPoint(Point2D pivot, double angleDegrees)
         {
@@ -48,14 +48,14 @@ namespace Project_CG_Paint.Algorithms.Transform
             // B3: Tịnh tiến ngược lại
             Matrix3x3 fromOrigin = MatrixFactory.CreateTranslation2D(pivot);
 
-            // Kết hợp: point × T(pivot) × Rotation × T(-pivot)
-            return fromOrigin * rotation * toOrigin;
+            // Kết hợp: point × T(-pivot) × Rotation × T(pivot)
+            return toOrigin * rotation * fromOrigin;
         }
 
         /// <summary>
         /// Ma trận đối xứng (reflection) qua một điểm pivot
         /// = phép scale(-1, -1) quanh pivot (lật cả X và Y)
-        /// Công thức: T(pivot) × Scale(-1, -1) × T(-pivot)
+        /// Công thức theo row-vector: T(-pivot) × Scale(-1, -1) × T(pivot)
         /// </summary>
         public static Matrix3x3 BuildReflectionByPoint(Point2D pivot)
         {
@@ -65,14 +65,11 @@ namespace Project_CG_Paint.Algorithms.Transform
 
         /// <summary>
         /// Ma trận đối xứng (reflection) qua một đường thẳng (start → end)
-        /// Công thức: T(start) × R(angle) × RefX × R(-angle) × T(-start)
+        /// Công thức theo row-vector: T(-start) × R(-angle) × RefX × R(angle) × T(start)
         /// </summary>
         public static Matrix3x3 BuildReflectionByLine(Point2D start, Point2D end)
         {
-            Point2D origin = new Point2D(0,0);
-            Point2D pointEnd = new Point2D(end.X, end.Y);
-            
-            Edge<Point2D> edge = new Edge<Point2D>(origin, pointEnd);
+            Edge<Point2D> edge = new Edge<Point2D>(start, end);
             double angleDegrees = Edge<Point2D>.AngleBetweenOx(edge);
 
             // B1: Tịnh tiến start về gốc
@@ -86,8 +83,8 @@ namespace Project_CG_Paint.Algorithms.Transform
             // B5: Tịnh tiến ngược lại
             Matrix3x3 fromOrigin = MatrixFactory.CreateTranslation2D(start);
 
-            // Kết hợp: point × T(start) × R(angle) × RefX × R(-angle) × T(-start)
-            return fromOrigin * unrotate * reflectX * alignToX * toOrigin;
+            // Kết hợp: point × T(-start) × R(-angle) × RefX × R(angle) × T(start)
+            return toOrigin * alignToX * reflectX * unrotate * fromOrigin;
         }
     }
 }
