@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Project_CG_Paint.Data.Scene;
 
-namespace Project_CG_Paint.Controllers
+namespace Project_CG_Paint.Services
 {
     public class SceneManager
     {

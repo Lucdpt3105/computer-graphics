@@ -11,6 +11,6 @@ namespace Project_CG_Paint.Data.Transform
         Translate,
         Rotate,
         Scale,
-        Reflection
+        Reflect
     }
 }

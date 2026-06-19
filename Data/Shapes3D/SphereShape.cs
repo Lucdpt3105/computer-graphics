@@ -28,11 +28,6 @@ namespace Project_CG_Paint.Data.Shapes3D
             throw new NotImplementedException();
         }
 
-        protected override void UpdateInspectionGeometry()
-        {
-            throw new NotImplementedException();
-        }
-
         protected override Point3D CalculateDefaultPivot()
         {
             throw new NotImplementedException();

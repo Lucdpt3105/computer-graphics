@@ -1,5 +1,5 @@
 ﻿using Project_CG_Paint.CoreModel.Geometry;
-using Project_CG_Paint.Data.ShapeStyle;
+using Project_CG_Paint.Data.Styles;
 using Project_CG_Paint.Data.Metadata;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,6 @@ namespace Project_CG_Paint.Data.Objects
     {
         public ObjectMetadata Metadata { get; set; } = new ObjectMetadata();
         public ShapeStyles Style { get; set; } = new ShapeStyles();
-        public AnimationData AnimationData { get; set; } = new AnimationData();
         public Queue<TransformRecord> TransformHistory { get; set; } = new Queue<TransformRecord>();
         public GraphicObject Parent { get; internal set; }
         public void SetParent(GraphicObject parent)
@@ -24,4 +23,4 @@ namespace Project_CG_Paint.Data.Objects
             Parent = parent;
         }
     }
-}}
+}

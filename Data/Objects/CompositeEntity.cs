@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_CG_Paint.Data.Scene;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Project_CG_Paint.Data.Objects
 {
-    public class CompositeEntity : GraphicObject
+    public class CompositeEntity : SceneNode2D
     {
-        private List<GraphicObject> _children = new List<GraphicObject>();
-        public IReadOnlyList<GraphicObject> Children => _children;
-        public void AddChild(GraphicObject child)
+        private List<SceneNode2D> _children = new List<SceneNode2D>();
+        public IReadOnlyList<SceneNode2D> Children => _children;
+        public void AddChild(SceneNode2D child)
         {
             if (child == null)
                 throw new ArgumentNullException(nameof(child));
@@ -24,7 +25,7 @@ namespace Project_CG_Paint.Data.Objects
             _children.Add(child);
             child.SetParent(this);
         }
-        public bool RemoveChild(GraphicObject child)
+        public bool RemoveChild(SceneNode2D child)
         {
             if (!_children.Remove(child))
                 return false;

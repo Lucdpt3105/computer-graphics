@@ -74,7 +74,11 @@
     <Compile Include="Controllers\Paint\RenderController.cs" />
     <Compile Include="Controllers\Paint\SceneController.cs" />
     <Compile Include="Controllers\Paint\SelectionController.cs" />
-    <Compile Include="Controllers\SceneManager.cs" />
+    <Compile Include="Controllers\Paint\ToolAndDrawContext.cs" />
+    <Compile Include="Services\AnimationService.cs" />
+    <Compile Include="Services\InspectorService.cs" />
+    <Compile Include="Services\RenderService.cs" />
+    <Compile Include="Services\SceneManager.cs" />
     <Compile Include="Controllers\Transform\TransformController.cs" />
     <Compile Include="CoreModel\Geometry\BoundingBox2D.cs" />
     <Compile Include="CoreModel\Geometry\BoundingBox3D.cs" />
@@ -86,8 +90,10 @@
     <Compile Include="CoreModel\Model\Point2D.cs" />
     <Compile Include="CoreModel\Model\Point3D.cs" />
     <Compile Include="Data\Animation\AnimationChannel.cs" />
-    <Compile Include="Data\Animation\AnimationData.cs" />
+    <Compile Include="Data\Animation\AnimationData2D.cs" />
+    <Compile Include="Data\Animation\EvaluatedNodeState2D.cs" />
     <Compile Include="Data\Animation\KeyFrame.cs" />
+    <Compile Include="Data\Animation\LocalTransform.cs" />
     <Compile Include="Data\GeometryInspection\EdgeIndex.cs" />
     <Compile Include="Data\GeometryInspection\GeometryInspectionData2D.cs" />
     <Compile Include="Data\GeometryInspection\GeometryInspectionData3D.cs" />
@@ -96,6 +102,7 @@
     <Compile Include="Data\Metadata\ObjectMetadata.cs" />
     <Compile Include="Data\Objects\GraphicObject.cs" />
     <Compile Include="Data\Scene\Scene.cs" />
+    <Compile Include="Data\Scene\SceneNode2D.cs" />
     <Compile Include="Data\Shapes2D\CircleShape.cs" />
     <Compile Include="Data\Shapes2D\DiamondShape.cs" />
     <Compile Include="Data\Shapes2D\EllipseShape.cs" />
@@ -111,10 +118,11 @@
     <Compile Include="Data\Shapes3D\PyramidShape.cs" />
     <Compile Include="Data\Objects\Shape3D.cs" />
     <Compile Include="Data\Shapes3D\SphereShape.cs" />
-    <Compile Include="Data\Shapes3D\WireframeStyle.cs" />
-    <Compile Include="Data\ShapeStyle\LinePattern.cs" />
-    <Compile Include="Data\ShapeStyle\ShapeStyles.cs" />
+    <Compile Include="Data\Styles\WireframeStyle.cs" />
+    <Compile Include="Data\Styles\LinePattern.cs" />
+    <Compile Include="Data\Styles\ShapeStyles.cs" />
     <Compile Include="Data\Transform\TransformRecord.cs" />
+    <Compile Include="Data\Transform\TransformState.cs" />
     <Compile Include="Data\Transform\TransformType.cs" />
     <Compile Include="Forms\Animation\AnimationForm.cs">
       <SubType>Form</SubType>
@@ -136,7 +144,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\Canvas\Canvas2D.cs" />
+    <Compile Include="Rendering\Canvas\Canvas3D.cs" />
+    <Compile Include="Rendering\Pipeline\RenderPipeline2D.cs" />
+    <Compile Include="Rendering\Pipeline\RenderPipeline3D.cs" />
+    <Compile Include="Rendering\Renderers\EntityRenderer.cs" />
+    <Compile Include="Rendering\Renderers\Shape2DRenderer.cs" />
+    <Compile Include="Rendering\Renderers\Shape3DRenderer.cs" />
     <Compile Include="Rendering\RenderService.cs" />
+    <Compile Include="Rendering\Selection\BoundingBoxRenderer.cs" />
+    <Compile Include="Services\SelectionService.cs" />
+    <Compile Include="Services\TransformService.cs" />
+    <Compile Include="ViewModel\Animation\AnimationDebugViewModel.cs" />
+    <Compile Include="ViewModel\Hierarchy\HierarchyNodeViewModel.cs" />
+    <Compile Include="ViewModel\Inspector\ObjectInspectorViewModel.cs" />
+    <Compile Include="ViewModel\Inspector\TransformRecordViewModel.cs" />
     <EmbeddedResource Include="Forms\Animation\AnimationForm.resx">
       <DependentUpon>AnimationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\CompositeEntity\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
