@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Project_CG_Paint.Algorithms.Projection;
 using Project_CG_Paint.Algorithms.Rasterization.Shape2D;
-using Project_CG_Paint.Algorithms.Rasterization.Shape3D;
 using Project_CG_Paint.CoreModel.Geometry;
 using Project_CG_Paint.CoreModel.Model;
 using Project_CG_Paint.Data.Objects;
 using Project_CG_Paint.Data.Shapes2D;
-using Project_CG_Paint.Data.Shapes3D;
 
 namespace Project_CG_Paint.Services
 {
     internal class RenderService
     {
         public const int PixelsPerUnit = 5;
+        private const double CavalierAngleDegrees = 225.0;
 
         public Bitmap Render(Size canvasSize, IReadOnlyList<GraphicObject> objects, bool is3DMode)
         {
@@ -321,14 +321,12 @@ namespace Project_CG_Paint.Services
 
         private List<Point2D> GetWireframeWorldPoints(Shape3D shape)
         {
-            var model = Generate3DModel(shape);
+            var model = Shape3DGeometryBuilder.BuildModel(shape);
             List<Point2D> result = new List<Point2D>();
 
-            foreach (Edge<Point3D> edge in model.Edges)
+            foreach (Edge<Point2D> edge in CavalierProjection.ProjectEdges(model.Edges, CavalierAngleDegrees))
             {
-                Point2D start = Project3D(edge.Start);
-                Point2D end = Project3D(edge.End);
-                result.AddRange(BresenhamLine.RasterizePoints(start, end));
+                result.AddRange(BresenhamLine.RasterizePoints(edge.Start, edge.End));
             }
 
             return result;
@@ -336,105 +334,17 @@ namespace Project_CG_Paint.Services
 
         private void DrawWireframe3D(Bitmap bitmap, Shape3D shape)
         {
-            var model = Generate3DModel(shape);
-            bool[] visibleEdges = GetVisibleEdges(model.Edges.Count, model.Faces);
-            Color hiddenColor = Blend(shape.Style.StrokeColor, Color.White, 0.55);
+            var model = Shape3DGeometryBuilder.BuildModel(shape);
 
-            for (int i = 0; i < model.Edges.Count; i++)
+            foreach (Edge<Point2D> edge in CavalierProjection.ProjectEdges(model.Edges, CavalierAngleDegrees))
             {
-                Edge<Point3D> edge = model.Edges[i];
-                List<Point2D> points = BresenhamLine.RasterizePoints(Project3D(edge.Start), Project3D(edge.End));
-                bool visible = visibleEdges.Length == 0 || visibleEdges[i];
-                int[] pattern = visible
-                    ? shape.WireframeStyle.VisibleEdgeStyle?.Pattern?.ToArray()
-                    : shape.WireframeStyle.HiddenEdgeStyle?.Pattern?.ToArray();
-
-                DrawPoints(
-                    bitmap,
-                    MethodApplyPattern.ApplyPattern(points, pattern),
-                    visible ? shape.Style.StrokeColor : hiddenColor);
+                DrawPoints(bitmap, BresenhamLine.RasterizePoints(edge.Start, edge.End), shape.Style.StrokeColor);
             }
-        }
-
-        private static bool[] GetVisibleEdges(int edgeCount, List<Face> faces)
-        {
-            bool[] visibleEdges = new bool[edgeCount];
-            if (faces == null || faces.Count == 0)
-                return visibleEdges;
-
-            // Phép chiếu Cavalier: Project3D(p) = (x - z*k, y - z*k) với k = cos(45°)
-            // Camera nhìn từ hướng Z+ vào gốc → view direction từ surface về camera = (k, k, -1)
-            const double k = 0.70710678118;
-            Point3D viewDir = new Point3D(k, k, -1);
-
-            foreach (Face face in faces)
-            {
-                Point3D normal = face.Normal;
-                double dot = normal.X * viewDir.X + normal.Y * viewDir.Y + normal.Z * viewDir.Z;
-                if (dot > 0)
-                {
-                    foreach (int edgeIndex in face.EdgeIndices)
-                    {
-                        if (edgeIndex >= 0 && edgeIndex < visibleEdges.Length)
-                            visibleEdges[edgeIndex] = true;
-                    }
-                }
-            }
-
-            return visibleEdges;
-        }
-
-        private static Color Blend(Color first, Color second, double secondAmount)
-        {
-            double firstAmount = 1.0 - secondAmount;
-            return Color.FromArgb(
-                (int)(first.R * firstAmount + second.R * secondAmount),
-                (int)(first.G * firstAmount + second.G * secondAmount),
-                (int)(first.B * firstAmount + second.B * secondAmount));
-        }
-
-        private static (List<Point3D> Vertices, List<Edge<Point3D>> Edges, List<Face> Faces) Generate3DModel(Shape3D shape)
-        {
-            if (shape is CubeShape cube)
-                return Offset(CubeWireFrame.Generate(cube.Size), cube.Position);
-            if (shape is SphereShape sphere)
-                return Offset(SphereWireFrame.Generate(sphere.Radius, sphere.Stacks, sphere.Slices), sphere.Center);
-            if (shape is CylinderShape cylinder)
-                return Offset(CylinderWireFrame.Generate(cylinder.Radius, cylinder.Height, cylinder.Segments), cylinder.Center);
-            if (shape is PrismShape prism)
-                return Offset(PrismWireFrame.Generate(prism.Radius, prism.Sides, prism.Height), prism.Center);
-            if (shape is PyramidShape pyramid)
-                return Offset(PyramidWireFrame.Generate(pyramid.BaseWidth, pyramid.BaseDepth, pyramid.Height), pyramid.Center);
-
-            return (new List<Point3D>(), new List<Edge<Point3D>>(), new List<Face>());
-        }
-
-        private static (List<Point3D> Vertices, List<Edge<Point3D>> Edges, List<Face> Faces) Offset(
-            (List<Point3D> Vertices, List<Edge<Point3D>> Edges, List<Face> Faces) model,
-            Point3D offset)
-        {
-            return (
-                model.Vertices.Select(point => Add(point, offset)).ToList(),
-                Offset(model.Edges, offset),
-                model.Faces);
-        }
-
-        private static List<Edge<Point3D>> Offset(IEnumerable<Edge<Point3D>> edges, Point3D offset)
-        {
-            return edges
-                .Select(e => new Edge<Point3D>(Add(e.Start, offset), Add(e.End, offset)))
-                .ToList();
-        }
-
-        private static Point3D Add(Point3D point, Point3D offset)
-        {
-            return new Point3D(point.X + offset.X, point.Y + offset.Y, point.Z + offset.Z);
         }
 
         private static Point2D Project3D(Point3D point)
         {
-            const double k = 0.70710678118;
-            return new Point2D(point.X - point.Z * k, point.Y - point.Z * k);
+            return CavalierProjection.ProjectPoint(point, CavalierAngleDegrees);
         }
     }
 }

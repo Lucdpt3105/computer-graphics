@@ -83,6 +83,7 @@
     <Compile Include="Services\MethodApplyPattern.cs" />
     <Compile Include="Services\RenderService.cs" />
     <Compile Include="Services\SceneManager.cs" />
+    <Compile Include="Services\Shape3DGeometryBuilder.cs" />
     <Compile Include="Controllers\Transform\TransformController.cs" />
     <Compile Include="CoreModel\Geometry\BoundingBox2D.cs" />
     <Compile Include="CoreModel\Geometry\BoundingBox3D.cs" />
@@ -140,7 +141,6 @@
     <Compile Include="Forms\Paint\PaintForm.Designer.cs">
       <DependentUpon>PaintForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Paint\Shape3DInputDialog.cs" />
     <Compile Include="Forms\Transform\TransformForm.cs">
       <SubType>Form</SubType>
     </Compile>
