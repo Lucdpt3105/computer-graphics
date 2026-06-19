@@ -1,6 +1,7 @@
 ﻿using Project_CG_Paint.CoreModel.Geometry;
 using Project_CG_Paint.CoreModel.Model;
-using Project_CG_Paint.Data.Shapes3D;
+using Project_CG_Paint.Data.GeometryInspection;
+using Project_CG_Paint.Data.Styles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,31 @@ namespace Project_CG_Paint.Data.Objects
 {
     public abstract class Shape3D : GraphicObject
     {
-        public List<Point3D> Vertices { get; set; } = new List<Point3D>();
-        public List<Edge<Point3D>> Edges { get; set; } = new List<Edge<Point3D>>();
         public Point3D Pivot { get; set; } = new Point3D();
+        public GeometryInspectionData3D InspectionGeometry { get; set; } = new GeometryInspectionData3D();
         public WireframeStyle WireframeStyle { get; set; } = new WireframeStyle();
+        public IReadOnlyList<Point3D> OriginalVertices => InspectionGeometry.OriginalVertices;
+        public IReadOnlyList<Point3D> CurrentVertices => InspectionGeometry.CurrentVertices;
+        public IReadOnlyList<EdgeIndex> Edges => InspectionGeometry.Edges;
+        //public abstract BoundingBox3D GetLocalBounds();
+        protected void InitializeShapeData()
+        {
+            this.Pivot = CalculateDefaultPivot();
+            RebuildInspectionGeometry();
+        }
+        public void RefreshInspectionGeometry()
+        {
+            RebuildInspectionGeometry();
+        }
+        public void ResetPivotToDefault()
+        {
+            Pivot = CalculateDefaultPivot();
+        }
+        public void ResetCurrentGeometry()
+        {
+            InspectionGeometry.ResetCurrentToOriginal();
+        }
+        protected abstract Point3D CalculateDefaultPivot();
+        protected abstract void RebuildInspectionGeometry();
     }
 }

@@ -42,9 +42,6 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
                 AddCircleSymmetricPoints(points, cx, cy, x, y);
             }
 
-            foreach (var point in Shape2DFill.FillCircle(center, radius))
-                points.Add(point);
-
             return new List<Point2D>(points);
         }
 

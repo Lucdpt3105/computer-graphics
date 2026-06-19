@@ -19,9 +19,6 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
             foreach (var point in BresenhamLine.RasterizePoints(vertex3, vertex1))
                 points.Add(point);
 
-            foreach (var point in Shape2DFill.FillTriangle(vertex1, vertex2, vertex3))
-                points.Add(point);
-
             return new List<Point2D>(points);
         }
     }

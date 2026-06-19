@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace Project_CG_Paint.CoreModel.Model
 {
-    public struct Point2D
+    public readonly struct Point2D
     {
-        public double X { get; set; }
-        public double Y { get; set; }
+        public double X { get; }
+        public double Y { get; }
 
         public Point2D(double x, double y)
         {
             X = x;
             Y = y;
+        }
+        public override string ToString()
+        {
+            return $"{X}, {Y}";
         }
     }
 }

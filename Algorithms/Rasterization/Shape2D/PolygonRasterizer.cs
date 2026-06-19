@@ -24,9 +24,6 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
                     points.Add(point);
             }
 
-            foreach (var point in Shape2DFill.FillPolygon(vertices))
-                points.Add(point);
-
             return new List<Point2D>(points);
         }
     }
