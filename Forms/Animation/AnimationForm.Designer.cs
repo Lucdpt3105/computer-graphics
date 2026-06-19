@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.listScene = new System.Windows.Forms.ToolStripMenuItem();
             this.scene1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.scene2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.sceneCanvas = new System.Windows.Forms.PictureBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -76,9 +77,10 @@
             this.menuStrip1.Text = "menuStrip1";
             // 
             // listScene
-            // 
+            //
             this.listScene.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scene1});
+            this.scene1,
+            this.scene2});
             this.listScene.Name = "listScene";
             this.listScene.Size = new System.Drawing.Size(175, 27);
             this.listScene.Text = "Scene Manager";
@@ -88,6 +90,12 @@
             this.scene1.Name = "scene1";
             this.scene1.Size = new System.Drawing.Size(203, 40);
             this.scene1.Text = "Scene 1";
+            //
+            // scene2
+            //
+            this.scene2.Name = "scene2";
+            this.scene2.Size = new System.Drawing.Size(203, 40);
+            this.scene2.Text = "Scene 2";
             // 
             // tableLayoutPanel2
             // 
@@ -166,6 +174,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem listScene;
         private System.Windows.Forms.ToolStripMenuItem scene1;
+        private System.Windows.Forms.ToolStripMenuItem scene2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label timeline;
         private System.Windows.Forms.PictureBox sceneCanvas;
