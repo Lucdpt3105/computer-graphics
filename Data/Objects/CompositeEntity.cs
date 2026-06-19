@@ -8,22 +8,29 @@ namespace Project_CG_Paint.Data.Objects
 {
     public class CompositeEntity : GraphicObject
     {
-        public List<GraphicObject> _children = new List<GraphicObject>();
+        private List<GraphicObject> _children = new List<GraphicObject>();
         public IReadOnlyList<GraphicObject> Children => _children;
         public void AddChild(GraphicObject child)
         {
-            if (child == null) throw new ArgumentNullException(nameof(child));
-            if (child.Parent != null) throw new InvalidOperationException("Child already has a parent.");
+            if (child == null)
+                throw new ArgumentNullException(nameof(child));
+
+            if(ReferenceEquals(child, this)) 
+                throw new InvalidOperationException("Cannot add self as child.");
+
+            if (child.Parent != null)
+                throw new InvalidOperationException("Child already has a parent.");
+
             _children.Add(child);
-            child.Parent = this;
+            child.SetParent(this);
         }
-        public void RemoveChild(GraphicObject child)
+        public bool RemoveChild(GraphicObject child)
         {
-            if (child == null) throw new ArgumentNullException(nameof(child));
-            if (_children.Remove(child))
-            {
-                child.Parent = null;
-            }
+            if (!_children.Remove(child))
+                return false;
+
+            child.SetParent(null);
+            return true;
         }
     }
 }

@@ -14,5 +14,12 @@ namespace Project_CG_Paint.CoreModel.Geometry
         public double MaxY { get; set; }
         public double Width => MaxX - MinX;
         public double Height => MaxY - MinY;
+        public BoundingBox2D(double minX, double minY, double maxX, double maxY)
+        {
+            MinX = minX;
+            MinY = minY;
+            MaxX = maxX;
+            MaxY = maxY;
+        }
     }
 }

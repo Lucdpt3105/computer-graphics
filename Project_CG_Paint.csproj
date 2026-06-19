@@ -88,6 +88,10 @@
     <Compile Include="Data\Animation\AnimationChannel.cs" />
     <Compile Include="Data\Animation\AnimationData.cs" />
     <Compile Include="Data\Animation\KeyFrame.cs" />
+    <Compile Include="Data\GeometryInspection\EdgeIndex.cs" />
+    <Compile Include="Data\GeometryInspection\GeometryInspectionData2D.cs" />
+    <Compile Include="Data\GeometryInspection\GeometryInspectionData3D.cs" />
+    <Compile Include="Data\GeometryInspection\NamePoint.cs" />
     <Compile Include="Data\Objects\CompositeEntity.cs" />
     <Compile Include="Data\Metadata\ObjectMetadata.cs" />
     <Compile Include="Data\Objects\GraphicObject.cs" />

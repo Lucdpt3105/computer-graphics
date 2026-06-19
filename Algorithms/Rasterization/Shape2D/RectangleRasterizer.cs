@@ -30,9 +30,6 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
             int xMin = (int)Math.Round(topLeft.X);
             int xMax = (int)Math.Round(bottomRight.X);
 
-            foreach (var point in Shape2DFill.FillRectangle(xMin, yMin, xMax, yMax))
-                points.Add(point);
-
             return new List<Point2D>(points);
         }
     }

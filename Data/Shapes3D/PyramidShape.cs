@@ -22,5 +22,20 @@ namespace Project_CG_Paint.Data.Shapes3D
             Center = center;
             this.Pivot = Center;
         }
+
+        protected override void RebuildInspectionGeometry()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void UpdateInspectionGeometry()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Point3D CalculateDefaultPivot()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,11 +10,16 @@ namespace Project_CG_Paint.CoreModel.Geometry
 {
     public class Edge<TPoint>
     {
+        public string Name {  get; set; }
         public TPoint Start { get; }
         public TPoint End { get; }
-
         public Edge(TPoint start, TPoint end)
+            : this(string.Empty, start, end)
         {
+        }
+        public Edge(string name, TPoint start, TPoint end)
+        {
+            Name = name;
             Start = start;
             End = end;
         }
@@ -26,6 +31,10 @@ namespace Project_CG_Paint.CoreModel.Geometry
 
             double angleDegrees = Math.Atan2(dy, dx) * (180.0 / Math.PI);
             return angleDegrees;
+        }
+        public string BuildEdge()
+        {
+            return $"Edge {Name}: Start({Start.ToString()}), End({End.ToString()})";
         }
     }
 }
