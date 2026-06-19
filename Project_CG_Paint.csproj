@@ -151,17 +151,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\Canvas\Canvas2D.cs" />
     <Compile Include="Rendering\Canvas\Canvas3D.cs" />
-    <Compile Include="Rendering\Pipeline\RenderPipeline2D.cs" />
-    <Compile Include="Rendering\Pipeline\RenderPipeline3D.cs" />
-    <Compile Include="Rendering\Renderers\EntityRenderer.cs" />
-    <Compile Include="Rendering\Renderers\Shape2DRenderer.cs" />
-    <Compile Include="Rendering\Renderers\Shape3DRenderer.cs" />
-    <Compile Include="Rendering\RenderService.cs" />
     <Compile Include="Rendering\Selection\BoundingBoxRenderer.cs" />
     <Compile Include="Services\SelectionService.cs" />
     <Compile Include="Services\TransformService.cs" />
-    <Compile Include="ViewModel\Animation\AnimationDebugViewModel.cs" />
-    <Compile Include="ViewModel\Hierarchy\HierarchyNodeViewModel.cs" />
     <Compile Include="ViewModel\Inspector\ObjectInspectorViewModel.cs" />
     <Compile Include="ViewModel\Inspector\TransformRecordViewModel.cs" />
     <EmbeddedResource Include="Forms\Animation\AnimationForm.resx">
@@ -224,6 +216,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\CompositeEntity\" />
+    <Folder Include="ViewModel\Animation\" />
+    <Folder Include="ViewModel\Hierarchy\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
