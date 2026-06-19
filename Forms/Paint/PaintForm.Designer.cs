@@ -1,4 +1,4 @@
-﻿namespace Project_CG_Paint.Forms.Paint
+namespace Project_CG_Paint.Forms.Paint
 {
     partial class PaintForm
     {
@@ -37,6 +37,7 @@
             this.btnDraw2D = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDraw3D = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOpenTransform = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExitApplication = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,6 +87,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.canvas = new System.Windows.Forms.PictureBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.inspectorGeometry = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusMousePos = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusFormSize = new System.Windows.Forms.ToolStripStatusLabel();
@@ -117,7 +119,7 @@
             this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27F));
@@ -134,7 +136,7 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
@@ -152,6 +154,7 @@
             this.btnDraw2D,
             this.btnDraw3D,
             this.btnOpenTransform,
+            this.btnRefresh,
             this.btnExitApplication});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -186,6 +189,12 @@
             this.btnOpenTransform.Text = "Transform";
             this.btnOpenTransform.Click += new System.EventHandler(this.btnOpenTransform_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(100, 108);
+            this.btnRefresh.Text = "Refresh";
+            // 
             // btnExitApplication
             // 
             this.btnExitApplication.Name = "btnExitApplication";
@@ -209,7 +218,7 @@
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel9, 4, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 118);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -224,7 +233,7 @@
             this.tableLayoutPanel5.Controls.Add(this.btnSelection, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
@@ -249,7 +258,7 @@
             this.btnSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSelection.Image = ((System.Drawing.Image)(resources.GetObject("btnSelection.Image")));
             this.btnSelection.Location = new System.Drawing.Point(4, 4);
-            this.btnSelection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSelection.Margin = new System.Windows.Forms.Padding(4);
             this.btnSelection.Name = "btnSelection";
             this.btnSelection.Size = new System.Drawing.Size(51, 214);
             this.btnSelection.TabIndex = 0;
@@ -264,7 +273,7 @@
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel10, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(71, 4);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
@@ -301,7 +310,7 @@
             this.tableLayoutPanel10.Controls.Add(this.btnPolygon, 2, 2);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 3;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -315,7 +324,7 @@
             this.btnPoint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPoint.Image = ((System.Drawing.Image)(resources.GetObject("btnPoint.Image")));
             this.btnPoint.Location = new System.Drawing.Point(4, 4);
-            this.btnPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPoint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPoint.Name = "btnPoint";
             this.btnPoint.Size = new System.Drawing.Size(76, 63);
             this.btnPoint.TabIndex = 0;
@@ -328,7 +337,7 @@
             this.btnLine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLine.Image = ((System.Drawing.Image)(resources.GetObject("btnLine.Image")));
             this.btnLine.Location = new System.Drawing.Point(88, 4);
-            this.btnLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnLine.Name = "btnLine";
             this.btnLine.Size = new System.Drawing.Size(76, 63);
             this.btnLine.TabIndex = 0;
@@ -340,7 +349,7 @@
             this.btnRectangle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRectangle.Image = ((System.Drawing.Image)(resources.GetObject("btnRectangle.Image")));
             this.btnRectangle.Location = new System.Drawing.Point(172, 4);
-            this.btnRectangle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRectangle.Margin = new System.Windows.Forms.Padding(4);
             this.btnRectangle.Name = "btnRectangle";
             this.btnRectangle.Size = new System.Drawing.Size(76, 63);
             this.btnRectangle.TabIndex = 0;
@@ -352,7 +361,7 @@
             this.btnCircle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCircle.Image = ((System.Drawing.Image)(resources.GetObject("btnCircle.Image")));
             this.btnCircle.Location = new System.Drawing.Point(4, 75);
-            this.btnCircle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCircle.Margin = new System.Windows.Forms.Padding(4);
             this.btnCircle.Name = "btnCircle";
             this.btnCircle.Size = new System.Drawing.Size(76, 63);
             this.btnCircle.TabIndex = 0;
@@ -364,7 +373,7 @@
             this.btnEllipse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEllipse.Image = ((System.Drawing.Image)(resources.GetObject("btnEllipse.Image")));
             this.btnEllipse.Location = new System.Drawing.Point(88, 75);
-            this.btnEllipse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEllipse.Margin = new System.Windows.Forms.Padding(4);
             this.btnEllipse.Name = "btnEllipse";
             this.btnEllipse.Size = new System.Drawing.Size(76, 63);
             this.btnEllipse.TabIndex = 0;
@@ -376,7 +385,7 @@
             this.btnTriangle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTriangle.Image = ((System.Drawing.Image)(resources.GetObject("btnTriangle.Image")));
             this.btnTriangle.Location = new System.Drawing.Point(172, 75);
-            this.btnTriangle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTriangle.Margin = new System.Windows.Forms.Padding(4);
             this.btnTriangle.Name = "btnTriangle";
             this.btnTriangle.Size = new System.Drawing.Size(76, 63);
             this.btnTriangle.TabIndex = 0;
@@ -388,7 +397,7 @@
             this.btnDiamond.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDiamond.Image = ((System.Drawing.Image)(resources.GetObject("btnDiamond.Image")));
             this.btnDiamond.Location = new System.Drawing.Point(4, 146);
-            this.btnDiamond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDiamond.Margin = new System.Windows.Forms.Padding(4);
             this.btnDiamond.Name = "btnDiamond";
             this.btnDiamond.Size = new System.Drawing.Size(76, 64);
             this.btnDiamond.TabIndex = 0;
@@ -400,7 +409,7 @@
             this.btnParallelogram.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnParallelogram.Image = ((System.Drawing.Image)(resources.GetObject("btnParallelogram.Image")));
             this.btnParallelogram.Location = new System.Drawing.Point(88, 146);
-            this.btnParallelogram.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnParallelogram.Margin = new System.Windows.Forms.Padding(4);
             this.btnParallelogram.Name = "btnParallelogram";
             this.btnParallelogram.Size = new System.Drawing.Size(76, 64);
             this.btnParallelogram.TabIndex = 0;
@@ -412,7 +421,7 @@
             this.btnPolygon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPolygon.Image = ((System.Drawing.Image)(resources.GetObject("btnPolygon.Image")));
             this.btnPolygon.Location = new System.Drawing.Point(172, 146);
-            this.btnPolygon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPolygon.Margin = new System.Windows.Forms.Padding(4);
             this.btnPolygon.Name = "btnPolygon";
             this.btnPolygon.Size = new System.Drawing.Size(76, 64);
             this.btnPolygon.TabIndex = 0;
@@ -427,7 +436,7 @@
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel11, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(339, 4);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
@@ -459,7 +468,7 @@
             this.tableLayoutPanel11.Controls.Add(this.btnSphere, 0, 2);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 3;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -473,7 +482,7 @@
             this.btnCube.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCube.Image = ((System.Drawing.Image)(resources.GetObject("btnCube.Image")));
             this.btnCube.Location = new System.Drawing.Point(4, 4);
-            this.btnCube.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCube.Margin = new System.Windows.Forms.Padding(4);
             this.btnCube.Name = "btnCube";
             this.btnCube.Size = new System.Drawing.Size(118, 63);
             this.btnCube.TabIndex = 0;
@@ -485,7 +494,7 @@
             this.btnPrism.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPrism.Image = ((System.Drawing.Image)(resources.GetObject("btnPrism.Image")));
             this.btnPrism.Location = new System.Drawing.Point(130, 4);
-            this.btnPrism.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrism.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrism.Name = "btnPrism";
             this.btnPrism.Size = new System.Drawing.Size(118, 63);
             this.btnPrism.TabIndex = 0;
@@ -497,7 +506,7 @@
             this.btnCylinder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCylinder.Image = ((System.Drawing.Image)(resources.GetObject("btnCylinder.Image")));
             this.btnCylinder.Location = new System.Drawing.Point(4, 75);
-            this.btnCylinder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCylinder.Margin = new System.Windows.Forms.Padding(4);
             this.btnCylinder.Name = "btnCylinder";
             this.btnCylinder.Size = new System.Drawing.Size(118, 63);
             this.btnCylinder.TabIndex = 0;
@@ -509,7 +518,7 @@
             this.btnPyramid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPyramid.Image = ((System.Drawing.Image)(resources.GetObject("btnPyramid.Image")));
             this.btnPyramid.Location = new System.Drawing.Point(130, 75);
-            this.btnPyramid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPyramid.Margin = new System.Windows.Forms.Padding(4);
             this.btnPyramid.Name = "btnPyramid";
             this.btnPyramid.Size = new System.Drawing.Size(118, 63);
             this.btnPyramid.TabIndex = 0;
@@ -521,7 +530,7 @@
             this.btnSphere.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSphere.Image = ((System.Drawing.Image)(resources.GetObject("btnSphere.Image")));
             this.btnSphere.Location = new System.Drawing.Point(4, 146);
-            this.btnSphere.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSphere.Margin = new System.Windows.Forms.Padding(4);
             this.btnSphere.Name = "btnSphere";
             this.btnSphere.Size = new System.Drawing.Size(118, 64);
             this.btnSphere.TabIndex = 0;
@@ -536,7 +545,7 @@
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel12, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(607, 4);
-            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 2;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
@@ -569,7 +578,7 @@
             this.tableLayoutPanel12.Controls.Add(this.btnReflectX, 1, 1);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 3;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -583,7 +592,7 @@
             this.btnFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFill.Image = ((System.Drawing.Image)(resources.GetObject("btnFill.Image")));
             this.btnFill.Location = new System.Drawing.Point(4, 4);
-            this.btnFill.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFill.Margin = new System.Windows.Forms.Padding(4);
             this.btnFill.Name = "btnFill";
             this.btnFill.Size = new System.Drawing.Size(118, 63);
             this.btnFill.TabIndex = 0;
@@ -595,7 +604,7 @@
             this.btnReflectO.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReflectO.Image = ((System.Drawing.Image)(resources.GetObject("btnReflectO.Image")));
             this.btnReflectO.Location = new System.Drawing.Point(130, 4);
-            this.btnReflectO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReflectO.Margin = new System.Windows.Forms.Padding(4);
             this.btnReflectO.Name = "btnReflectO";
             this.btnReflectO.Size = new System.Drawing.Size(118, 63);
             this.btnReflectO.TabIndex = 0;
@@ -607,7 +616,7 @@
             this.btnLineStyle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLineStyle.Image = ((System.Drawing.Image)(resources.GetObject("btnLineStyle.Image")));
             this.btnLineStyle.Location = new System.Drawing.Point(4, 75);
-            this.btnLineStyle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLineStyle.Margin = new System.Windows.Forms.Padding(4);
             this.btnLineStyle.Name = "btnLineStyle";
             this.btnLineStyle.Size = new System.Drawing.Size(118, 63);
             this.btnLineStyle.TabIndex = 0;
@@ -619,7 +628,7 @@
             this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
             this.btnClear.Location = new System.Drawing.Point(4, 146);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(118, 64);
             this.btnClear.TabIndex = 0;
@@ -631,7 +640,7 @@
             this.btnReflectY.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReflectY.Image = ((System.Drawing.Image)(resources.GetObject("btnReflectY.Image")));
             this.btnReflectY.Location = new System.Drawing.Point(130, 146);
-            this.btnReflectY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReflectY.Margin = new System.Windows.Forms.Padding(4);
             this.btnReflectY.Name = "btnReflectY";
             this.btnReflectY.Size = new System.Drawing.Size(118, 64);
             this.btnReflectY.TabIndex = 0;
@@ -643,7 +652,7 @@
             this.btnReflectX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReflectX.Image = ((System.Drawing.Image)(resources.GetObject("btnReflectX.Image")));
             this.btnReflectX.Location = new System.Drawing.Point(130, 75);
-            this.btnReflectX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReflectX.Margin = new System.Windows.Forms.Padding(4);
             this.btnReflectX.Name = "btnReflectX";
             this.btnReflectX.Size = new System.Drawing.Size(118, 63);
             this.btnReflectX.TabIndex = 0;
@@ -658,7 +667,7 @@
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel13, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(875, 4);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 2;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
@@ -695,7 +704,7 @@
             this.tableLayoutPanel13.Controls.Add(this.btnGray, 2, 2);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 3;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -708,7 +717,7 @@
             // 
             this.btnBlack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBlack.Location = new System.Drawing.Point(4, 4);
-            this.btnBlack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBlack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBlack.Name = "btnBlack";
             this.btnBlack.Size = new System.Drawing.Size(76, 63);
             this.btnBlack.TabIndex = 0;
@@ -719,7 +728,7 @@
             // 
             this.btnWhite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnWhite.Location = new System.Drawing.Point(88, 4);
-            this.btnWhite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnWhite.Margin = new System.Windows.Forms.Padding(4);
             this.btnWhite.Name = "btnWhite";
             this.btnWhite.Size = new System.Drawing.Size(76, 63);
             this.btnWhite.TabIndex = 0;
@@ -730,7 +739,7 @@
             // 
             this.btnRed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRed.Location = new System.Drawing.Point(172, 4);
-            this.btnRed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRed.Margin = new System.Windows.Forms.Padding(4);
             this.btnRed.Name = "btnRed";
             this.btnRed.Size = new System.Drawing.Size(76, 63);
             this.btnRed.TabIndex = 0;
@@ -741,7 +750,7 @@
             // 
             this.btnOrange.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOrange.Location = new System.Drawing.Point(4, 75);
-            this.btnOrange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOrange.Margin = new System.Windows.Forms.Padding(4);
             this.btnOrange.Name = "btnOrange";
             this.btnOrange.Size = new System.Drawing.Size(76, 63);
             this.btnOrange.TabIndex = 0;
@@ -752,7 +761,7 @@
             // 
             this.btnYellow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnYellow.Location = new System.Drawing.Point(88, 75);
-            this.btnYellow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnYellow.Margin = new System.Windows.Forms.Padding(4);
             this.btnYellow.Name = "btnYellow";
             this.btnYellow.Size = new System.Drawing.Size(76, 63);
             this.btnYellow.TabIndex = 0;
@@ -763,7 +772,7 @@
             // 
             this.btnGreen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnGreen.Location = new System.Drawing.Point(172, 75);
-            this.btnGreen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGreen.Margin = new System.Windows.Forms.Padding(4);
             this.btnGreen.Name = "btnGreen";
             this.btnGreen.Size = new System.Drawing.Size(76, 63);
             this.btnGreen.TabIndex = 0;
@@ -774,7 +783,7 @@
             // 
             this.btnBlue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBlue.Location = new System.Drawing.Point(4, 146);
-            this.btnBlue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBlue.Margin = new System.Windows.Forms.Padding(4);
             this.btnBlue.Name = "btnBlue";
             this.btnBlue.Size = new System.Drawing.Size(76, 64);
             this.btnBlue.TabIndex = 0;
@@ -785,7 +794,7 @@
             // 
             this.btnPurple.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPurple.Location = new System.Drawing.Point(88, 146);
-            this.btnPurple.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPurple.Margin = new System.Windows.Forms.Padding(4);
             this.btnPurple.Name = "btnPurple";
             this.btnPurple.Size = new System.Drawing.Size(76, 64);
             this.btnPurple.TabIndex = 0;
@@ -796,7 +805,7 @@
             // 
             this.btnGray.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnGray.Location = new System.Drawing.Point(172, 146);
-            this.btnGray.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGray.Margin = new System.Windows.Forms.Padding(4);
             this.btnGray.Name = "btnGray";
             this.btnGray.Size = new System.Drawing.Size(76, 64);
             this.btnGray.TabIndex = 0;
@@ -811,9 +820,10 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
             this.tableLayoutPanel3.Controls.Add(this.canvas, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.treeView1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.inspectorGeometry, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 395);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -825,7 +835,7 @@
             this.canvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvas.Location = new System.Drawing.Point(179, 4);
-            this.canvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.canvas.Margin = new System.Windows.Forms.Padding(4);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(935, 999);
             this.canvas.TabIndex = 0;
@@ -836,10 +846,20 @@
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(4, 4);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(167, 999);
             this.treeView1.TabIndex = 1;
+            // 
+            // inspectorGeometry
+            // 
+            this.inspectorGeometry.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inspectorGeometry.FormattingEnabled = true;
+            this.inspectorGeometry.ItemHeight = 24;
+            this.inspectorGeometry.Location = new System.Drawing.Point(1121, 3);
+            this.inspectorGeometry.Name = "inspectorGeometry";
+            this.inspectorGeometry.Size = new System.Drawing.Size(224, 1001);
+            this.inspectorGeometry.TabIndex = 2;
             // 
             // statusStrip1
             // 
@@ -875,7 +895,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PaintForm";
             this.Text = "PaintForm";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -957,6 +977,7 @@
         private System.Windows.Forms.Button btnReflectY;
         private System.Windows.Forms.Button btnReflectX;
         private System.Windows.Forms.ToolStripMenuItem btnOpenTransform;
+        private System.Windows.Forms.ToolStripMenuItem btnRefresh;
         private System.Windows.Forms.ToolStripMenuItem btnExitApplication;
         private System.Windows.Forms.Button btnBlack;
         private System.Windows.Forms.Button btnWhite;
@@ -969,6 +990,7 @@
         private System.Windows.Forms.Button btnGray;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ListBox inspectorGeometry;
     }
 }
 

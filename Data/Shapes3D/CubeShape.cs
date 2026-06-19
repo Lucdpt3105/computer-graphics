@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Project_CG_Paint.CoreModel.Model;
 using Project_CG_Paint.Data.Objects;
+using Project_CG_Paint.Services;
 
 namespace Project_CG_Paint.Data.Shapes3D
 {
@@ -16,30 +17,31 @@ namespace Project_CG_Paint.Data.Shapes3D
         {
             Size = size;
             Position = new Point3D(0, 0, 0);
-            this.Pivot = CalculateDefaultPivot();
+            InitializeShapeData();
         }
         public CubeShape(double size, Point3D position)
         {
             Size = size;
             Position = position;
-            this.Pivot = CalculateDefaultPivot();
+            InitializeShapeData();
         }
         public CubeShape(double size, Point3D position, Point3D pivot)
         {
             Size = size;
             Position = position;
             this.Pivot = pivot;
+            RefreshInspectionGeometry();
         }
 
         protected override void RebuildInspectionGeometry()
         {
-            throw new NotImplementedException();
+            Shape3DGeometryBuilder.PopulateInspectionGeometry(this);
         }
 
 
         protected override Point3D CalculateDefaultPivot()
         {
-            return new Point3D(0,0, 0);
+            return Position;
         }
     }
 }

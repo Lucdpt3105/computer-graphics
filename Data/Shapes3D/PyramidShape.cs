@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Project_CG_Paint.CoreModel.Model;
 using Project_CG_Paint.Data.Objects;
+using Project_CG_Paint.Services;
 
 namespace Project_CG_Paint.Data.Shapes3D
 {
@@ -20,17 +21,17 @@ namespace Project_CG_Paint.Data.Shapes3D
             BaseDepth = baseDepth;
             Height = height;
             Center = center;
-            this.Pivot = Center;
+            InitializeShapeData();
         }
 
         protected override void RebuildInspectionGeometry()
         {
-            throw new NotImplementedException();
+            Shape3DGeometryBuilder.PopulateInspectionGeometry(this);
         }
 
         protected override Point3D CalculateDefaultPivot()
         {
-            throw new NotImplementedException();
+            return Center;
         }
     }
 }
