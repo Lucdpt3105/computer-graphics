@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnimationForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.listScene = new System.Windows.Forms.ToolStripMenuItem();
             this.scene1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.timeline = new System.Windows.Forms.Label();
             this.sceneCanvas = new System.Windows.Forms.PictureBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.timeline = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -51,23 +52,26 @@
             this.tableLayoutPanel1.Controls.Add(this.timeline, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1100, 675);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listScene});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 22);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1100, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,13 +80,13 @@
             this.listScene.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scene1});
             this.listScene.Name = "listScene";
-            this.listScene.Size = new System.Drawing.Size(125, 18);
+            this.listScene.Size = new System.Drawing.Size(175, 27);
             this.listScene.Text = "Scene Manager";
             // 
             // scene1
             // 
             this.scene1.Name = "scene1";
-            this.scene1.Size = new System.Drawing.Size(224, 26);
+            this.scene1.Size = new System.Drawing.Size(203, 40);
             this.scene1.Text = "Scene 1";
             // 
             // tableLayoutPanel2
@@ -94,50 +98,56 @@
             this.tableLayoutPanel2.Controls.Add(this.sceneCanvas, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.treeView1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 25);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 37);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 399);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1092, 599);
             this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // timeline
-            // 
-            this.timeline.AutoSize = true;
-            this.timeline.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeline.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeline.Location = new System.Drawing.Point(3, 427);
-            this.timeline.Name = "timeline";
-            this.timeline.Size = new System.Drawing.Size(794, 23);
-            this.timeline.TabIndex = 2;
-            this.timeline.Text = "duration";
-            this.timeline.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sceneCanvas
             // 
             this.sceneCanvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.sceneCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sceneCanvas.Location = new System.Drawing.Point(122, 3);
+            this.sceneCanvas.Location = new System.Drawing.Point(167, 4);
+            this.sceneCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sceneCanvas.Name = "sceneCanvas";
-            this.sceneCanvas.Size = new System.Drawing.Size(549, 393);
+            this.sceneCanvas.Size = new System.Drawing.Size(756, 591);
             this.sceneCanvas.TabIndex = 0;
             this.sceneCanvas.TabStop = false;
             // 
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 3);
+            this.treeView1.Location = new System.Drawing.Point(4, 4);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(113, 393);
+            this.treeView1.Size = new System.Drawing.Size(155, 591);
             this.treeView1.TabIndex = 1;
+            // 
+            // timeline
+            // 
+            this.timeline.AutoSize = true;
+            this.timeline.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeline.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeline.Location = new System.Drawing.Point(4, 640);
+            this.timeline.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.timeline.Name = "timeline";
+            this.timeline.Size = new System.Drawing.Size(1092, 35);
+            this.timeline.TabIndex = 2;
+            this.timeline.Text = "duration";
+            this.timeline.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AnimationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1100, 675);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AnimationForm";
             this.Text = "AnimationForm";
             this.tableLayoutPanel1.ResumeLayout(false);

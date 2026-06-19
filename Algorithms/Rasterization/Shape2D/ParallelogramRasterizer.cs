@@ -19,11 +19,11 @@ namespace Project_CG_Paint.Algorithms.Rasterization.Shape2D
 
             foreach (var point in BresenhamLine.RasterizePoints(vertexA, vertexB))
                 points.Add(point);
-            foreach (var point in BresenhamLine.RasterizePoints(vertexB, vertexC))
+            foreach (var point in BresenhamLine.RasterizePoints(vertexB, vertexD))
                 points.Add(point);
-            foreach (var point in BresenhamLine.RasterizePoints(vertexC, vertexD))
+            foreach (var point in BresenhamLine.RasterizePoints(vertexD, vertexC))
                 points.Add(point);
-            foreach (var point in BresenhamLine.RasterizePoints(vertexD, vertexA))
+            foreach (var point in BresenhamLine.RasterizePoints(vertexC, vertexA))
                 points.Add(point);
 
             return new List<Point2D>(points);

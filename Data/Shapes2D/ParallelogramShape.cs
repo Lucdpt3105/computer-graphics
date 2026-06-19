@@ -21,8 +21,6 @@ namespace Project_CG_Paint.Data.Shapes2D
         }
         private void SetDefinition(Point2D vertexA, Point2D vertexB, Point2D vertexC)
         {
-            Point2D vertexD = CalculateVertexD();
-
             if(Math.Abs(Cross(vertexA, vertexB, vertexC)) < double.Epsilon)
             {
                 throw new ArgumentException("The provided points do not form a valid parallelogram.");
@@ -41,8 +39,8 @@ namespace Project_CG_Paint.Data.Shapes2D
 
             InspectionGeometry.OriginalVertices.Add(VertexA);
             InspectionGeometry.OriginalVertices.Add(VertexB);
-            InspectionGeometry.OriginalVertices.Add(VertexC);
             InspectionGeometry.OriginalVertices.Add(vertexD);
+            InspectionGeometry.OriginalVertices.Add(VertexC);
 
             InspectionGeometry.Edges.Add(new EdgeIndex(0, 1));
             InspectionGeometry.Edges.Add(new EdgeIndex(1, 2));
@@ -57,7 +55,8 @@ namespace Project_CG_Paint.Data.Shapes2D
         }
         protected override Point2D CalculateDefaultPivot()
         {
-            return new Point2D((VertexA.X + VertexC.X) / 2.0, (VertexA.Y + VertexC.Y) / 2.0);
+            Point2D vertexD = CalculateVertexD();
+            return new Point2D((VertexA.X + vertexD.X) / 2.0, (VertexA.Y + vertexD.Y) / 2.0);
         }
         private Point2D CalculateVertexD()
         {
@@ -71,10 +70,11 @@ namespace Project_CG_Paint.Data.Shapes2D
         }
         public override BoundingBox2D GetLocalBounds()
         {
-            double minX = Math.Min(Math.Min(VertexA.X, VertexB.X), VertexC.X);
-            double minY = Math.Min(Math.Min(VertexA.Y, VertexB.Y), VertexC.Y);
-            double maxX = Math.Max(Math.Max(VertexA.X, VertexB.X), VertexC.X);
-            double maxY = Math.Max(Math.Max(VertexA.Y, VertexB.Y), VertexC.Y);
+            Point2D vertexD = CalculateVertexD();
+            double minX = Math.Min(Math.Min(VertexA.X, VertexB.X), Math.Min(VertexC.X, vertexD.X));
+            double minY = Math.Min(Math.Min(VertexA.Y, VertexB.Y), Math.Min(VertexC.Y, vertexD.Y));
+            double maxX = Math.Max(Math.Max(VertexA.X, VertexB.X), Math.Max(VertexC.X, vertexD.X));
+            double maxY = Math.Max(Math.Max(VertexA.Y, VertexB.Y), Math.Max(VertexC.Y, vertexD.Y));
             return new BoundingBox2D(minX, minY, maxX, maxY);
         }
     }
