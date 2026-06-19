@@ -32,17 +32,15 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.grBoxTranslate = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnTranslate = new System.Windows.Forms.RadioButton();
             this.lbInputField = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.inputOffsetY = new System.Windows.Forms.NumericUpDown();
             this.lbOffsetX = new System.Windows.Forms.Label();
             this.lbOffsetY = new System.Windows.Forms.Label();
             this.inputOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.btnTranslate = new System.Windows.Forms.CheckBox();
             this.grBoxRotate = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnRotateOrigin = new System.Windows.Forms.RadioButton();
-            this.btnRotatePivot = new System.Windows.Forms.RadioButton();
             this.lbPivotRotate = new System.Windows.Forms.Label();
             this.inputSelectRotatePivot = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -55,9 +53,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.inputRotateAngle = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnRotateSelectPivot = new System.Windows.Forms.RadioButton();
+            this.btnRotateEnterPivot = new System.Windows.Forms.RadioButton();
             this.grBoxScale = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnScalePivot = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.inputSelectPivotScale = new System.Windows.Forms.ComboBox();
@@ -68,18 +67,8 @@
             this.inputScaleY = new System.Windows.Forms.NumericUpDown();
             this.grBoxReflect = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnReflectPivot = new System.Windows.Forms.RadioButton();
-            this.btnReflectLine = new System.Windows.Forms.RadioButton();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnApply = new System.Windows.Forms.Button();
-            this.currentObject = new System.Windows.Forms.ComboBox();
-            this.lbListObjects = new System.Windows.Forms.Label();
-            this.btnClear = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.inputSelectReflectPivot = new System.Windows.Forms.ComboBox();
-            this.btnRotateSelectPivot = new System.Windows.Forms.RadioButton();
-            this.btnRotateEnterPivot = new System.Windows.Forms.RadioButton();
             this.btnReflectSelectPivot = new System.Windows.Forms.RadioButton();
             this.btnReflectEnterPivot = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
@@ -93,17 +82,28 @@
             this.inputSelectReflectLine = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.inputStartLineReflectX = new System.Windows.Forms.NumericUpDown();
             this.inputStartLineReflectY = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.inputEndLineReflectX = new System.Windows.Forms.NumericUpDown();
             this.inputEndLineReflectY = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.currentObject = new System.Windows.Forms.ComboBox();
+            this.lbListObjects = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnRotatePivot = new System.Windows.Forms.CheckBox();
+            this.btnRotateOrigin = new System.Windows.Forms.CheckBox();
+            this.btnScale = new System.Windows.Forms.CheckBox();
+            this.btnReflectPivot = new System.Windows.Forms.CheckBox();
+            this.btnReflectLine = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grBoxTranslate.SuspendLayout();
@@ -126,17 +126,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputScaleY)).BeginInit();
             this.grBoxReflect.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputPivotReflectX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputPivotReflectY)).BeginInit();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
-            this.tableLayoutPanel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputStartLineReflectX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputStartLineReflectY)).BeginInit();
+            this.tableLayoutPanel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputEndLineReflectX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputEndLineReflectY)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -190,9 +190,9 @@
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel5.Controls.Add(this.btnTranslate, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.lbInputField, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.btnTranslate, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -202,17 +202,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(473, 416);
             this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // btnTranslate
-            // 
-            this.btnTranslate.AutoSize = true;
-            this.btnTranslate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTranslate.Location = new System.Drawing.Point(3, 3);
-            this.btnTranslate.Name = "btnTranslate";
-            this.btnTranslate.Size = new System.Drawing.Size(277, 24);
-            this.btnTranslate.TabIndex = 0;
-            this.btnTranslate.Text = "Translate";
-            this.btnTranslate.UseVisualStyleBackColor = true;
             // 
             // lbInputField
             // 
@@ -279,6 +268,17 @@
             this.inputOffsetX.Size = new System.Drawing.Size(133, 27);
             this.inputOffsetX.TabIndex = 3;
             // 
+            // btnTranslate
+            // 
+            this.btnTranslate.AutoSize = true;
+            this.btnTranslate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTranslate.Location = new System.Drawing.Point(3, 3);
+            this.btnTranslate.Name = "btnTranslate";
+            this.btnTranslate.Size = new System.Drawing.Size(277, 35);
+            this.btnTranslate.TabIndex = 3;
+            this.btnTranslate.Text = "Translate";
+            this.btnTranslate.UseVisualStyleBackColor = true;
+            // 
             // grBoxRotate
             // 
             this.grBoxRotate.Controls.Add(this.tableLayoutPanel4);
@@ -296,14 +296,14 @@
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.04641F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.95359F));
-            this.tableLayoutPanel4.Controls.Add(this.btnRotateOrigin, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnRotatePivot, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.lbPivotRotate, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.inputSelectRotatePivot, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel7, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel10, 1, 4);
             this.tableLayoutPanel4.Controls.Add(this.btnRotateSelectPivot, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.btnRotateEnterPivot, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.btnRotatePivot, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnRotateOrigin, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -316,37 +316,13 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(474, 416);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // btnRotateOrigin
-            // 
-            this.btnRotateOrigin.AutoSize = true;
-            this.btnRotateOrigin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnRotateOrigin.Location = new System.Drawing.Point(226, 3);
-            this.btnRotateOrigin.Name = "btnRotateOrigin";
-            this.btnRotateOrigin.Size = new System.Drawing.Size(245, 24);
-            this.btnRotateOrigin.TabIndex = 0;
-            this.btnRotateOrigin.TabStop = true;
-            this.btnRotateOrigin.Text = "Rotate Origin";
-            this.btnRotateOrigin.UseVisualStyleBackColor = true;
-            // 
-            // btnRotatePivot
-            // 
-            this.btnRotatePivot.AutoSize = true;
-            this.btnRotatePivot.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnRotatePivot.Location = new System.Drawing.Point(3, 3);
-            this.btnRotatePivot.Name = "btnRotatePivot";
-            this.btnRotatePivot.Size = new System.Drawing.Size(217, 24);
-            this.btnRotatePivot.TabIndex = 0;
-            this.btnRotatePivot.TabStop = true;
-            this.btnRotatePivot.Text = "Rotate Pivot";
-            this.btnRotatePivot.UseVisualStyleBackColor = true;
-            // 
             // lbPivotRotate
             // 
             this.lbPivotRotate.AutoSize = true;
             this.lbPivotRotate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbPivotRotate.Location = new System.Drawing.Point(3, 33);
             this.lbPivotRotate.Name = "lbPivotRotate";
-            this.lbPivotRotate.Size = new System.Drawing.Size(217, 33);
+            this.lbPivotRotate.Size = new System.Drawing.Size(216, 33);
             this.lbPivotRotate.TabIndex = 1;
             this.lbPivotRotate.Text = "Please Enter Pivot";
             this.lbPivotRotate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -356,9 +332,9 @@
             this.inputSelectRotatePivot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.inputSelectRotatePivot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputSelectRotatePivot.FormattingEnabled = true;
-            this.inputSelectRotatePivot.Location = new System.Drawing.Point(226, 69);
+            this.inputSelectRotatePivot.Location = new System.Drawing.Point(225, 69);
             this.inputSelectRotatePivot.Name = "inputSelectRotatePivot";
-            this.inputSelectRotatePivot.Size = new System.Drawing.Size(245, 26);
+            this.inputSelectRotatePivot.Size = new System.Drawing.Size(246, 26);
             this.inputSelectRotatePivot.TabIndex = 2;
             // 
             // tableLayoutPanel7
@@ -376,7 +352,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.74046F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.25954F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(217, 278);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(216, 278);
             this.tableLayoutPanel7.TabIndex = 4;
             // 
             // label3
@@ -394,7 +370,7 @@
             this.inputPivotRotateX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.inputPivotRotateX.Location = new System.Drawing.Point(111, 3);
             this.inputPivotRotateX.Name = "inputPivotRotateX";
-            this.inputPivotRotateX.Size = new System.Drawing.Size(103, 27);
+            this.inputPivotRotateX.Size = new System.Drawing.Size(102, 27);
             this.inputPivotRotateX.TabIndex = 5;
             // 
             // label4
@@ -412,7 +388,7 @@
             this.inputPivotRotateY.Dock = System.Windows.Forms.DockStyle.Fill;
             this.inputPivotRotateY.Location = new System.Drawing.Point(111, 41);
             this.inputPivotRotateY.Name = "inputPivotRotateY";
-            this.inputPivotRotateY.Size = new System.Drawing.Size(103, 27);
+            this.inputPivotRotateY.Size = new System.Drawing.Size(102, 27);
             this.inputPivotRotateY.TabIndex = 6;
             // 
             // tableLayoutPanel10
@@ -422,12 +398,12 @@
             this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel11, 0, 1);
             this.tableLayoutPanel10.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(226, 135);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(225, 135);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 2;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(245, 278);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(246, 278);
             this.tableLayoutPanel10.TabIndex = 5;
             // 
             // tableLayoutPanel11
@@ -443,7 +419,7 @@
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(239, 245);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(240, 245);
             this.tableLayoutPanel11.TabIndex = 0;
             // 
             // label6
@@ -452,7 +428,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 245);
+            this.label6.Size = new System.Drawing.Size(114, 245);
             this.label6.TabIndex = 0;
             this.label6.Text = "Degrees";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -460,7 +436,7 @@
             // inputRotateAngle
             // 
             this.inputRotateAngle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.inputRotateAngle.Location = new System.Drawing.Point(122, 3);
+            this.inputRotateAngle.Location = new System.Drawing.Point(123, 3);
             this.inputRotateAngle.Name = "inputRotateAngle";
             this.inputRotateAngle.Size = new System.Drawing.Size(114, 27);
             this.inputRotateAngle.TabIndex = 1;
@@ -471,10 +447,34 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(239, 27);
+            this.label5.Size = new System.Drawing.Size(240, 27);
             this.label5.TabIndex = 1;
             this.label5.Text = "Enter Angle";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnRotateSelectPivot
+            // 
+            this.btnRotateSelectPivot.AutoSize = true;
+            this.btnRotateSelectPivot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRotateSelectPivot.Location = new System.Drawing.Point(3, 69);
+            this.btnRotateSelectPivot.Name = "btnRotateSelectPivot";
+            this.btnRotateSelectPivot.Size = new System.Drawing.Size(216, 27);
+            this.btnRotateSelectPivot.TabIndex = 6;
+            this.btnRotateSelectPivot.TabStop = true;
+            this.btnRotateSelectPivot.Text = "Case 1: Select Pivot";
+            this.btnRotateSelectPivot.UseVisualStyleBackColor = true;
+            // 
+            // btnRotateEnterPivot
+            // 
+            this.btnRotateEnterPivot.AutoSize = true;
+            this.btnRotateEnterPivot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRotateEnterPivot.Location = new System.Drawing.Point(3, 102);
+            this.btnRotateEnterPivot.Name = "btnRotateEnterPivot";
+            this.btnRotateEnterPivot.Size = new System.Drawing.Size(216, 27);
+            this.btnRotateEnterPivot.TabIndex = 7;
+            this.btnRotateEnterPivot.TabStop = true;
+            this.btnRotateEnterPivot.Text = "Case 2: Enter Pivot";
+            this.btnRotateEnterPivot.UseVisualStyleBackColor = true;
             // 
             // grBoxScale
             // 
@@ -493,11 +493,11 @@
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.65306F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.34694F));
-            this.tableLayoutPanel8.Controls.Add(this.btnScalePivot, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 2);
             this.tableLayoutPanel8.Controls.Add(this.inputSelectPivotScale, 1, 1);
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel12, 0, 3);
+            this.tableLayoutPanel8.Controls.Add(this.btnScale, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -508,17 +508,6 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(473, 416);
             this.tableLayoutPanel8.TabIndex = 0;
-            // 
-            // btnScalePivot
-            // 
-            this.btnScalePivot.AutoSize = true;
-            this.btnScalePivot.Location = new System.Drawing.Point(3, 3);
-            this.btnScalePivot.Name = "btnScalePivot";
-            this.btnScalePivot.Size = new System.Drawing.Size(72, 24);
-            this.btnScalePivot.TabIndex = 0;
-            this.btnScalePivot.TabStop = true;
-            this.btnScalePivot.Text = "Scale";
-            this.btnScalePivot.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -622,8 +611,6 @@
             this.tableLayoutPanel9.ColumnCount = 2;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.25739F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.74261F));
-            this.tableLayoutPanel9.Controls.Add(this.btnReflectPivot, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.btnReflectLine, 1, 0);
             this.tableLayoutPanel9.Controls.Add(this.label11, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.inputSelectReflectPivot, 0, 3);
             this.tableLayoutPanel9.Controls.Add(this.btnReflectSelectPivot, 0, 2);
@@ -634,6 +621,8 @@
             this.tableLayoutPanel9.Controls.Add(this.btnReflectEnterLine, 1, 4);
             this.tableLayoutPanel9.Controls.Add(this.inputSelectReflectLine, 1, 3);
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel14, 1, 5);
+            this.tableLayoutPanel9.Controls.Add(this.btnReflectPivot, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.btnReflectLine, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -646,103 +635,6 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(474, 416);
             this.tableLayoutPanel9.TabIndex = 1;
-            // 
-            // btnReflectPivot
-            // 
-            this.btnReflectPivot.AutoSize = true;
-            this.btnReflectPivot.Location = new System.Drawing.Point(3, 3);
-            this.btnReflectPivot.Name = "btnReflectPivot";
-            this.btnReflectPivot.Size = new System.Drawing.Size(125, 24);
-            this.btnReflectPivot.TabIndex = 0;
-            this.btnReflectPivot.TabStop = true;
-            this.btnReflectPivot.Text = "Reflect Pivot";
-            this.btnReflectPivot.UseVisualStyleBackColor = true;
-            // 
-            // btnReflectLine
-            // 
-            this.btnReflectLine.AutoSize = true;
-            this.btnReflectLine.Location = new System.Drawing.Point(227, 3);
-            this.btnReflectLine.Name = "btnReflectLine";
-            this.btnReflectLine.Size = new System.Drawing.Size(120, 24);
-            this.btnReflectLine.TabIndex = 0;
-            this.btnReflectLine.TabStop = true;
-            this.btnReflectLine.Text = "Reflect Line";
-            this.btnReflectLine.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 7;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.Controls.Add(this.btnClose, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnApply, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.currentObject, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.lbListObjects, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnClear, 5, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(971, 41);
-            this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnClose.Location = new System.Drawing.Point(682, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(91, 35);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnApply.Location = new System.Drawing.Point(585, 3);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(91, 35);
-            this.btnApply.TabIndex = 2;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            // 
-            // currentObject
-            // 
-            this.currentObject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.currentObject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentObject.FormattingEnabled = true;
-            this.currentObject.Location = new System.Drawing.Point(294, 3);
-            this.currentObject.Name = "currentObject";
-            this.currentObject.Size = new System.Drawing.Size(285, 28);
-            this.currentObject.TabIndex = 1;
-            // 
-            // lbListObjects
-            // 
-            this.lbListObjects.AutoSize = true;
-            this.lbListObjects.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbListObjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbListObjects.Location = new System.Drawing.Point(173, 0);
-            this.lbListObjects.Name = "lbListObjects";
-            this.lbListObjects.Size = new System.Drawing.Size(115, 41);
-            this.lbListObjects.TabIndex = 0;
-            this.lbListObjects.Text = "Select Object:";
-            this.lbListObjects.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnClear.Location = new System.Drawing.Point(779, 3);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(91, 35);
-            this.btnClear.TabIndex = 3;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -763,30 +655,6 @@
             this.inputSelectReflectPivot.Name = "inputSelectReflectPivot";
             this.inputSelectReflectPivot.Size = new System.Drawing.Size(218, 28);
             this.inputSelectReflectPivot.TabIndex = 3;
-            // 
-            // btnRotateSelectPivot
-            // 
-            this.btnRotateSelectPivot.AutoSize = true;
-            this.btnRotateSelectPivot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRotateSelectPivot.Location = new System.Drawing.Point(3, 69);
-            this.btnRotateSelectPivot.Name = "btnRotateSelectPivot";
-            this.btnRotateSelectPivot.Size = new System.Drawing.Size(217, 27);
-            this.btnRotateSelectPivot.TabIndex = 6;
-            this.btnRotateSelectPivot.TabStop = true;
-            this.btnRotateSelectPivot.Text = "Case 1: Select Pivot";
-            this.btnRotateSelectPivot.UseVisualStyleBackColor = true;
-            // 
-            // btnRotateEnterPivot
-            // 
-            this.btnRotateEnterPivot.AutoSize = true;
-            this.btnRotateEnterPivot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRotateEnterPivot.Location = new System.Drawing.Point(3, 102);
-            this.btnRotateEnterPivot.Name = "btnRotateEnterPivot";
-            this.btnRotateEnterPivot.Size = new System.Drawing.Size(217, 27);
-            this.btnRotateEnterPivot.TabIndex = 7;
-            this.btnRotateEnterPivot.TabStop = true;
-            this.btnRotateEnterPivot.Text = "Case 2: Enter Pivot";
-            this.btnRotateEnterPivot.UseVisualStyleBackColor = true;
             // 
             // btnReflectSelectPivot
             // 
@@ -945,6 +813,40 @@
             this.tableLayoutPanel15.Size = new System.Drawing.Size(238, 92);
             this.tableLayoutPanel15.TabIndex = 0;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Location = new System.Drawing.Point(3, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(113, 46);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Value-X";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Location = new System.Drawing.Point(3, 46);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(113, 46);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Value-Y";
+            // 
+            // inputStartLineReflectX
+            // 
+            this.inputStartLineReflectX.Location = new System.Drawing.Point(122, 3);
+            this.inputStartLineReflectX.Name = "inputStartLineReflectX";
+            this.inputStartLineReflectX.Size = new System.Drawing.Size(113, 27);
+            this.inputStartLineReflectX.TabIndex = 1;
+            // 
+            // inputStartLineReflectY
+            // 
+            this.inputStartLineReflectY.Location = new System.Drawing.Point(122, 49);
+            this.inputStartLineReflectY.Name = "inputStartLineReflectY";
+            this.inputStartLineReflectY.Size = new System.Drawing.Size(113, 27);
+            this.inputStartLineReflectY.TabIndex = 1;
+            // 
             // tableLayoutPanel16
             // 
             this.tableLayoutPanel16.ColumnCount = 2;
@@ -962,6 +864,40 @@
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel16.Size = new System.Drawing.Size(238, 93);
             this.tableLayoutPanel16.TabIndex = 1;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Location = new System.Drawing.Point(3, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(113, 46);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Value-X";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.Location = new System.Drawing.Point(3, 46);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(113, 47);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Value-Y";
+            // 
+            // inputEndLineReflectX
+            // 
+            this.inputEndLineReflectX.Location = new System.Drawing.Point(122, 3);
+            this.inputEndLineReflectX.Name = "inputEndLineReflectX";
+            this.inputEndLineReflectX.Size = new System.Drawing.Size(113, 27);
+            this.inputEndLineReflectX.TabIndex = 1;
+            // 
+            // inputEndLineReflectY
+            // 
+            this.inputEndLineReflectY.Location = new System.Drawing.Point(122, 49);
+            this.inputEndLineReflectY.Name = "inputEndLineReflectY";
+            this.inputEndLineReflectY.Size = new System.Drawing.Size(113, 27);
+            this.inputEndLineReflectY.TabIndex = 1;
             // 
             // label13
             // 
@@ -985,73 +921,135 @@
             this.label14.Text = "End Point";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label15
+            // tableLayoutPanel3
             // 
-            this.label15.AutoSize = true;
-            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(3, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(113, 46);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Value-X";
+            this.tableLayoutPanel3.ColumnCount = 7;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.Controls.Add(this.btnClose, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnApply, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.currentObject, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lbListObjects, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnClear, 5, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(971, 41);
+            this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // label16
+            // btnClose
             // 
-            this.label16.AutoSize = true;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Location = new System.Drawing.Point(3, 46);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(113, 46);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Value-Y";
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnClose.Location = new System.Drawing.Point(682, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(91, 35);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // label17
+            // btnApply
             // 
-            this.label17.AutoSize = true;
-            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Location = new System.Drawing.Point(3, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(113, 46);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Value-X";
+            this.btnApply.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnApply.Location = new System.Drawing.Point(585, 3);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(91, 35);
+            this.btnApply.TabIndex = 2;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
             // 
-            // label18
+            // currentObject
             // 
-            this.label18.AutoSize = true;
-            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label18.Location = new System.Drawing.Point(3, 46);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(113, 47);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Value-Y";
+            this.currentObject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentObject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentObject.FormattingEnabled = true;
+            this.currentObject.Location = new System.Drawing.Point(294, 3);
+            this.currentObject.Name = "currentObject";
+            this.currentObject.Size = new System.Drawing.Size(285, 28);
+            this.currentObject.TabIndex = 1;
             // 
-            // inputStartLineReflectX
+            // lbListObjects
             // 
-            this.inputStartLineReflectX.Location = new System.Drawing.Point(122, 3);
-            this.inputStartLineReflectX.Name = "inputStartLineReflectX";
-            this.inputStartLineReflectX.Size = new System.Drawing.Size(113, 27);
-            this.inputStartLineReflectX.TabIndex = 1;
+            this.lbListObjects.AutoSize = true;
+            this.lbListObjects.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbListObjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbListObjects.Location = new System.Drawing.Point(173, 0);
+            this.lbListObjects.Name = "lbListObjects";
+            this.lbListObjects.Size = new System.Drawing.Size(115, 41);
+            this.lbListObjects.TabIndex = 0;
+            this.lbListObjects.Text = "Select Object:";
+            this.lbListObjects.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // inputStartLineReflectY
+            // btnClear
             // 
-            this.inputStartLineReflectY.Location = new System.Drawing.Point(122, 49);
-            this.inputStartLineReflectY.Name = "inputStartLineReflectY";
-            this.inputStartLineReflectY.Size = new System.Drawing.Size(113, 27);
-            this.inputStartLineReflectY.TabIndex = 1;
+            this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnClear.Location = new System.Drawing.Point(779, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(91, 35);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
             // 
-            // inputEndLineReflectX
+            // btnRotatePivot
             // 
-            this.inputEndLineReflectX.Location = new System.Drawing.Point(122, 3);
-            this.inputEndLineReflectX.Name = "inputEndLineReflectX";
-            this.inputEndLineReflectX.Size = new System.Drawing.Size(113, 27);
-            this.inputEndLineReflectX.TabIndex = 1;
+            this.btnRotatePivot.AutoSize = true;
+            this.btnRotatePivot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRotatePivot.Location = new System.Drawing.Point(3, 3);
+            this.btnRotatePivot.Name = "btnRotatePivot";
+            this.btnRotatePivot.Size = new System.Drawing.Size(216, 27);
+            this.btnRotatePivot.TabIndex = 8;
+            this.btnRotatePivot.Text = "Rotate Pivot";
+            this.btnRotatePivot.UseVisualStyleBackColor = true;
             // 
-            // inputEndLineReflectY
+            // btnRotateOrigin
             // 
-            this.inputEndLineReflectY.Location = new System.Drawing.Point(122, 49);
-            this.inputEndLineReflectY.Name = "inputEndLineReflectY";
-            this.inputEndLineReflectY.Size = new System.Drawing.Size(113, 27);
-            this.inputEndLineReflectY.TabIndex = 1;
+            this.btnRotateOrigin.AutoSize = true;
+            this.btnRotateOrigin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRotateOrigin.Location = new System.Drawing.Point(225, 3);
+            this.btnRotateOrigin.Name = "btnRotateOrigin";
+            this.btnRotateOrigin.Size = new System.Drawing.Size(246, 27);
+            this.btnRotateOrigin.TabIndex = 9;
+            this.btnRotateOrigin.Text = "Rotate Origin";
+            this.btnRotateOrigin.UseVisualStyleBackColor = true;
+            // 
+            // btnScale
+            // 
+            this.btnScale.AutoSize = true;
+            this.btnScale.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnScale.Location = new System.Drawing.Point(3, 3);
+            this.btnScale.Name = "btnScale";
+            this.btnScale.Size = new System.Drawing.Size(266, 35);
+            this.btnScale.TabIndex = 6;
+            this.btnScale.Text = "Scale";
+            this.btnScale.UseVisualStyleBackColor = true;
+            // 
+            // btnReflectPivot
+            // 
+            this.btnReflectPivot.AutoSize = true;
+            this.btnReflectPivot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReflectPivot.Location = new System.Drawing.Point(3, 3);
+            this.btnReflectPivot.Name = "btnReflectPivot";
+            this.btnReflectPivot.Size = new System.Drawing.Size(218, 27);
+            this.btnReflectPivot.TabIndex = 12;
+            this.btnReflectPivot.Text = "Reflect Pivot";
+            this.btnReflectPivot.UseVisualStyleBackColor = true;
+            // 
+            // btnReflectLine
+            // 
+            this.btnReflectLine.AutoSize = true;
+            this.btnReflectLine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReflectLine.Location = new System.Drawing.Point(227, 3);
+            this.btnReflectLine.Name = "btnReflectLine";
+            this.btnReflectLine.Size = new System.Drawing.Size(244, 27);
+            this.btnReflectLine.TabIndex = 13;
+            this.btnReflectLine.Text = "Reflect Line";
+            this.btnReflectLine.UseVisualStyleBackColor = true;
             // 
             // TransformForm
             // 
@@ -1092,8 +1090,6 @@
             this.grBoxReflect.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputPivotReflectX)).EndInit();
@@ -1102,12 +1098,14 @@
             this.tableLayoutPanel14.PerformLayout();
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
-            this.tableLayoutPanel16.ResumeLayout(false);
-            this.tableLayoutPanel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputStartLineReflectX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputStartLineReflectY)).EndInit();
+            this.tableLayoutPanel16.ResumeLayout(false);
+            this.tableLayoutPanel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputEndLineReflectX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputEndLineReflectY)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1126,14 +1124,9 @@
         private System.Windows.Forms.GroupBox grBoxRotate;
         private System.Windows.Forms.GroupBox grBoxScale;
         private System.Windows.Forms.GroupBox grBoxReflect;
-        private System.Windows.Forms.RadioButton btnScalePivot;
-        private System.Windows.Forms.RadioButton btnTranslate;
-        private System.Windows.Forms.RadioButton btnRotateOrigin;
-        private System.Windows.Forms.RadioButton btnReflectPivot;
         private System.Windows.Forms.Label lbInputField;
         private System.Windows.Forms.Label lbOffsetX;
         private System.Windows.Forms.Label lbOffsetY;
-        private System.Windows.Forms.RadioButton btnRotatePivot;
         private System.Windows.Forms.Label lbPivotRotate;
         private System.Windows.Forms.NumericUpDown inputOffsetY;
         private System.Windows.Forms.NumericUpDown inputOffsetX;
@@ -1161,7 +1154,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown inputScaleX;
         private System.Windows.Forms.NumericUpDown inputScaleY;
-        private System.Windows.Forms.RadioButton btnReflectLine;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox inputSelectReflectPivot;
         private System.Windows.Forms.RadioButton btnRotateSelectPivot;
@@ -1190,5 +1182,11 @@
         private System.Windows.Forms.NumericUpDown inputStartLineReflectY;
         private System.Windows.Forms.NumericUpDown inputEndLineReflectX;
         private System.Windows.Forms.NumericUpDown inputEndLineReflectY;
+        private System.Windows.Forms.CheckBox btnTranslate;
+        private System.Windows.Forms.CheckBox btnRotatePivot;
+        private System.Windows.Forms.CheckBox btnRotateOrigin;
+        private System.Windows.Forms.CheckBox btnScale;
+        private System.Windows.Forms.CheckBox btnReflectPivot;
+        private System.Windows.Forms.CheckBox btnReflectLine;
     }
 }
