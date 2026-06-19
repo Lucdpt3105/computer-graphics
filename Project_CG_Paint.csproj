@@ -67,24 +67,14 @@
     <Compile Include="Algorithms\Rasterization\Shape3D\SphereWireFrame.cs" />
     <Compile Include="Algorithms\Transform\TransformComposer2D.cs" />
     <Compile Include="Algorithms\Transform\TransformComposer3D.cs" />
-    <Compile Include="Controllers\Animation\AnimationController.cs" />
-    <Compile Include="Controllers\Animation\TimelineController.cs" />
     <Compile Include="Controllers\Paint\DrawingController.cs" />
-    <Compile Include="Controllers\Paint\ObjectInspectorController.cs" />
-    <Compile Include="Controllers\Paint\RenderController.cs" />
-    <Compile Include="Controllers\Paint\SceneController.cs" />
-    <Compile Include="Controllers\Paint\SelectionController.cs" />
     <Compile Include="Controllers\Paint\ToolAndDrawContext.cs" />
     <Compile Include="Forms\Paint\Shape3DInputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Services\AnimationService.cs" />
-    <Compile Include="Services\InspectorService.cs" />
     <Compile Include="Services\MethodApplyPattern.cs" />
     <Compile Include="Services\RenderService.cs" />
-    <Compile Include="Services\SceneManager.cs" />
     <Compile Include="Services\Shape3DGeometryBuilder.cs" />
-    <Compile Include="Controllers\Transform\TransformController.cs" />
     <Compile Include="CoreModel\Geometry\BoundingBox2D.cs" />
     <Compile Include="CoreModel\Geometry\BoundingBox3D.cs" />
     <Compile Include="CoreModel\Geometry\Edge.cs" />
@@ -149,13 +139,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rendering\Canvas\Canvas2D.cs" />
-    <Compile Include="Rendering\Canvas\Canvas3D.cs" />
-    <Compile Include="Rendering\Selection\BoundingBoxRenderer.cs" />
     <Compile Include="Services\SelectionService.cs" />
     <Compile Include="Services\TransformService.cs" />
-    <Compile Include="ViewModel\Inspector\ObjectInspectorViewModel.cs" />
-    <Compile Include="ViewModel\Inspector\TransformRecordViewModel.cs" />
     <EmbeddedResource Include="Forms\Animation\AnimationForm.resx">
       <DependentUpon>AnimationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,10 +199,6 @@
     <Content Include="ICO\sphere.ico" />
     <Content Include="ICO\triangle.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\CompositeEntity\" />
-    <Folder Include="ViewModel\Animation\" />
-    <Folder Include="ViewModel\Hierarchy\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
