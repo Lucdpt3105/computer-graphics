@@ -27,6 +27,9 @@ namespace Project_CG_Paint.Forms.Animation
         private DateTime _sceneStartTime;
         private bool _sceneRunning;
         private AnimationScene _activeScene = AnimationScene.Scene1;
+        private Bitmap _sceneBackgroundCache;
+        private Size _sceneBackgroundCacheSize;
+        private AnimationScene _sceneBackgroundCacheScene;
 
         public AnimationForm()
         {
@@ -77,15 +80,21 @@ namespace Project_CG_Paint.Forms.Animation
             Resize += (sender, e) =>
             {
                 ConfigureSceneCanvas();
+                InvalidateSceneBackgroundCache();
                 QueueRenderSceneFrame();
             };
-            sceneCanvas.Resize += (sender, e) => QueueRenderSceneFrame();
+            sceneCanvas.Resize += (sender, e) =>
+            {
+                InvalidateSceneBackgroundCache();
+                QueueRenderSceneFrame();
+            };
             FormClosed += (sender, e) =>
             {
                 _sceneTimer.Stop();
+                InvalidateSceneBackgroundCache();
                 _sceneTimer.Dispose();
             };
-            _sceneTimer.Interval = 33;
+            _sceneTimer.Interval = 16;
             _sceneTimer.Tick += SceneTimer_Tick;
         }
 
@@ -94,6 +103,7 @@ namespace Project_CG_Paint.Forms.Animation
             _activeScene = AnimationScene.Scene1;
             _sceneRunning = true;
             _sceneStartTime = DateTime.Now;
+            InvalidateSceneBackgroundCache();
             PopulateSceneTree();
             _sceneTimer.Start();
             QueueRenderSceneFrame();
@@ -104,6 +114,7 @@ namespace Project_CG_Paint.Forms.Animation
             _activeScene = AnimationScene.Scene2;
             _sceneRunning = true;
             _sceneStartTime = DateTime.Now;
+            InvalidateSceneBackgroundCache();
             PopulateSceneTree();
             _sceneTimer.Start();
             QueueRenderSceneFrame();
@@ -145,17 +156,45 @@ namespace Project_CG_Paint.Forms.Animation
             if (canvasSize.Width <= 0 || canvasSize.Height <= 0)
                 return;
 
-            List<GraphicObject> objects = _activeScene == AnimationScene.Scene2
-                ? BuildScene2(time, canvasSize)
-                : BuildScene1(time, canvasSize);
+            List<GraphicObject> foregroundObjects = _activeScene == AnimationScene.Scene2
+                ? BuildScene2Foreground(time, canvasSize)
+                : BuildScene1Foreground(time, canvasSize);
 
             Image oldImage = sceneCanvas.Image;
-            sceneCanvas.Image = _renderService.Render(canvasSize, objects, is3DMode: false);
+            Bitmap frame = new Bitmap(GetSceneBackgroundCache(canvasSize));
+            _renderService.RenderObjects(frame, foregroundObjects);
+            sceneCanvas.Image = frame;
             oldImage?.Dispose();
 
             timeline.Text = _activeScene == AnimationScene.Scene2
                 ? $"Scene 2 | t = {time:0.00}s / 30s | translate cars, dodge lanes, falling crate, rotate wheels, scale smoke, FINISHED"
                 : $"Scene 1 | t = {time:0.00}s | translate car/missile/plane, rotate wheels/fall, scale explosion";
+        }
+
+        private Bitmap GetSceneBackgroundCache(Size canvasSize)
+        {
+            if (_sceneBackgroundCache == null
+                || _sceneBackgroundCacheSize != canvasSize
+                || _sceneBackgroundCacheScene != _activeScene)
+            {
+                InvalidateSceneBackgroundCache();
+                List<GraphicObject> backgroundObjects = _activeScene == AnimationScene.Scene2
+                    ? BuildScene2Background(canvasSize)
+                    : BuildScene1Background(canvasSize);
+
+                _sceneBackgroundCache = _renderService.Render(canvasSize, backgroundObjects, is3DMode: false);
+                _sceneBackgroundCacheSize = canvasSize;
+                _sceneBackgroundCacheScene = _activeScene;
+            }
+
+            return _sceneBackgroundCache;
+        }
+
+        private void InvalidateSceneBackgroundCache()
+        {
+            _sceneBackgroundCache?.Dispose();
+            _sceneBackgroundCache = null;
+            _sceneBackgroundCacheSize = Size.Empty;
         }
 
         private List<GraphicObject> BuildScene1(double time, Size canvasSize)
@@ -173,6 +212,30 @@ namespace Project_CG_Paint.Forms.Animation
             return objects;
         }
 
+        private List<GraphicObject> BuildScene1Background(Size canvasSize)
+        {
+            List<GraphicObject> objects = new List<GraphicObject>();
+
+            AddWorld(objects);
+            AddBridge(objects);
+            FitSceneToCanvas(objects, canvasSize);
+
+            return objects;
+        }
+
+        private List<GraphicObject> BuildScene1Foreground(double time, Size canvasSize)
+        {
+            List<GraphicObject> objects = new List<GraphicObject>();
+
+            AddSun(objects, time);
+            AddCar(objects, time);
+            AddMissileAndExplosion(objects, time);
+            AddPlane(objects, time);
+            FitSceneToCanvas(objects, canvasSize);
+
+            return objects;
+        }
+
         private List<GraphicObject> BuildScene2(double time, Size canvasSize)
         {
             List<GraphicObject> objects = new List<GraphicObject>();
@@ -181,6 +244,32 @@ namespace Project_CG_Paint.Forms.Animation
             AddRaceRoad(objects, time);
             AddRaceObstacles(objects, time);
             AddFinishLine(objects, time);
+            AddRaceCars(objects, time);
+            AddFinishedOverlay(objects, time);
+            FitSceneToCanvas(objects, canvasSize);
+
+            return objects;
+        }
+
+        private List<GraphicObject> BuildScene2Background(Size canvasSize)
+        {
+            List<GraphicObject> objects = new List<GraphicObject>();
+
+            AddNightCity(objects, 0);
+            AddRaceRoadBase(objects);
+            AddFinishLineBase(objects);
+            FitSceneToCanvas(objects, canvasSize);
+
+            return objects;
+        }
+
+        private List<GraphicObject> BuildScene2Foreground(double time, Size canvasSize)
+        {
+            List<GraphicObject> objects = new List<GraphicObject>();
+
+            AddRaceRoadMotion(objects, time);
+            AddRaceObstacles(objects, time);
+            AddFinishLineEffects(objects, time);
             AddRaceCars(objects, time);
             AddFinishedOverlay(objects, time);
             FitSceneToCanvas(objects, canvasSize);
@@ -259,13 +348,22 @@ namespace Project_CG_Paint.Forms.Animation
 
         private void AddRaceRoad(List<GraphicObject> objects, double time)
         {
+            AddRaceRoadBase(objects);
+            AddRaceRoadMotion(objects, time);
+        }
+
+        private void AddRaceRoadBase(List<GraphicObject> objects)
+        {
             AddFilledRectangle(objects, "Race road base", new Point2D(-100, -60), new Point2D(100, -15),
                 Color.FromArgb(28, 29, 35), Color.FromArgb(18, 18, 24));
             AddFilledRectangle(objects, "Left neon curb", new Point2D(-100, -20), new Point2D(100, -18),
                 Color.FromArgb(0, 170, 210), Color.FromArgb(0, 170, 210));
             AddFilledRectangle(objects, "Right neon curb", new Point2D(-100, -57), new Point2D(100, -55),
                 Color.FromArgb(210, 35, 95), Color.FromArgb(210, 35, 95));
+        }
 
+        private void AddRaceRoadMotion(List<GraphicObject> objects, double time)
+        {
             for (int i = -8; i <= 11; i++)
             {
                 double x = i * 16 - (time * 18 % 16);
@@ -345,6 +443,12 @@ namespace Project_CG_Paint.Forms.Animation
 
         private void AddFinishLine(List<GraphicObject> objects, double time)
         {
+            AddFinishLineBase(objects);
+            AddFinishLineEffects(objects, time);
+        }
+
+        private void AddFinishLineBase(List<GraphicObject> objects)
+        {
             double x = 82;
             AddLine(objects, "Finish pole", new Point2D(x, -58), new Point2D(x, -14), Color.White);
             AddLine(objects, "Finish neon pole", new Point2D(x + 1, -58), new Point2D(x + 1, -14), Color.FromArgb(0, 210, 255));
@@ -358,9 +462,13 @@ namespace Project_CG_Paint.Forms.Animation
                         fill, fill);
                 }
             }
+        }
 
+        private void AddFinishLineEffects(List<GraphicObject> objects, double time)
+        {
             if (time > 25.5)
             {
+                double x = 82;
                 double flash = 0.6 + 0.4 * Math.Sin(time * 18);
                 AddLine(objects, "Finish flash scale", new Point2D(x - 8, -12), new Point2D(x + 11, -12),
                     Color.FromArgb((int)(180 + 70 * flash), 240, 255));

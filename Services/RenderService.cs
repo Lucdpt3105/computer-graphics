@@ -47,6 +47,17 @@ namespace Project_CG_Paint.Services
             return bitmap;
         }
 
+        public void RenderObjects(Bitmap bitmap, IReadOnlyList<GraphicObject> objects)
+        {
+            if (bitmap == null || objects == null)
+                return;
+
+            foreach (GraphicObject obj in objects.Where(o => o.Metadata.IsVisible))
+            {
+                RenderObject(bitmap, obj);
+            }
+        }
+
         public Point2D ScreenToWorld(Point screenPoint, Size canvasSize)
         {
             double originX = canvasSize.Width / 2.0;
